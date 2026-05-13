@@ -40,4 +40,21 @@ export const projectsData = [
     tech: ["Python", "Machine Learning", "AI", "Groq API"],
   },
 
+  {
+  name: "Nihongo Learning Platform",
+  description: "A full-stack Japanese learning platform with JLPT-based learning modules, quizzes, AI chatbot integration, admin dashboard, video management, certificates, authentication, dark mode, and cloud deployment using Railway and MongoDB Atlas.",
+  github_link: "https://github.com/Premhari-7/nihongo-learning-platform",
+  tech: [
+    "React Native",
+    "Expo",
+    "Node.js",
+    "Express.js",
+    "MongoDB Atlas",
+    "Railway",
+    "TypeScript",
+    "JWT Authentication",
+    "Groq AI"
+  ]
+},
+
 ];
