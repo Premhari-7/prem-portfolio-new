@@ -2,7 +2,7 @@ import { selfData, skillsData } from "@/constant";
 
 const baseUrl =
   process.env.NEXT_PUBLIC_SITE_URL ||
-  "https://prem-portfolio-i3wr.vercel.app";
+  "https://prem-hari-portfolio.vercel.app";
 
 export function generatePersonStructuredData() {
   const skills = skillsData.flatMap((category) =>

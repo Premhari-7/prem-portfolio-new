@@ -14,24 +14,69 @@ import {
 } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  applicationName: "Prem Hari S",
+  applicationName: "Prem Hari Portfolio",
+
   title: {
-    default: "Prem Hari S",
-    template: "%s | Prem Hari S",
+    default: "Prem Hari | Full Stack Developer",
+    template: "%s | Prem Hari",
   },
+
   description:
-    "Full Stack Developer | MERN Stack Developer building real-world web applications.",
+    "Prem Hari Portfolio - Full Stack Developer specializing in MERN Stack, React, Next.js, and modern web applications.",
+
   authors: [
     {
-      name: "Prem Hari S",
-      url: "https://prem-portfolio-i3wr.vercel.app",
+      name: "Prem Hari",
+      url: "https://prem-hari-portfolio.vercel.app",
     },
   ],
-  creator: "Prem Hari S",
-  keywords: Keywords,
 
-  // ✅ FIXED HERE
-  metadataBase: new URL("https://prem-portfolio-i3wr.vercel.app"),
+  creator: "Prem Hari",
+
+  keywords: [
+    "Prem Hari",
+    "Prem Hari Portfolio",
+    "Full Stack Developer",
+    "MERN Stack Developer",
+    "React Developer",
+    "Next.js Developer",
+    "Frontend Developer",
+    "Web Developer",
+    "Portfolio Website",
+    ...(Array.isArray(Keywords) ? Keywords : []),
+  ],
+
+  metadataBase: new URL("https://prem-hari-portfolio.vercel.app"),
+
+  openGraph: {
+    title: "Prem Hari | Full Stack Developer",
+    description:
+      "Portfolio of Prem Hari - Full Stack Developer building modern web applications using MERN Stack and Next.js.",
+    url: "https://prem-hari-portfolio.vercel.app",
+    siteName: "Prem Hari Portfolio",
+    locale: "en_US",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Prem Hari | Full Stack Developer",
+    description:
+      "Portfolio of Prem Hari - MERN Stack and Next.js Developer.",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
+
+  alternates: {
+    canonical: "https://prem-hari-portfolio.vercel.app",
+  },
 };
 
 export default function RootLayout({
@@ -54,12 +99,14 @@ export default function RootLayout({
             __html: JSON.stringify(personStructuredData),
           }}
         />
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(websiteStructuredData),
           }}
         />
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
