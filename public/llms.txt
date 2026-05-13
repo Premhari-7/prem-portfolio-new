@@ -1,0 +1,26 @@
+# Prem Hari S - Full Stack Developer Portfolio
+
+## About
+Prem Hari S is a Full Stack Developer based in Coimbatore, Tamil Nadu, India. He specializes in building modern web applications using the MERN stack and focuses on creating practical, user-friendly digital solutions.
+
+## Skills
+- **Languages**: JavaScript, TypeScript, Python, PHP, SQL
+- **Frameworks**: React, Next.js, Node.js, Express.js, Tailwind CSS, Bootstrap
+- **Tools**: Git, GitHub, MongoDB, MySQL, VS Code, Postman
+
+## Projects
+- **Scent Bite**: A perfume shop management system with real-time stock updates, billing, and product management.
+- **Smart Parking System**: A booking-based parking system similar to theater seat selection.
+- **GUVI Auth System**: Login, register, and profile system using MySQL, MongoDB, Redis with strict architecture rules.
+- **Plant Disease Analyzer AI**: AI-based system trained on 10,000+ images to detect plant diseases with chatbot support.
+
+## Contact
+- **Email**: haripradeep185@gmail.com
+- **GitHub**: https://github.com/Premhari-7
+- **LinkedIn**: https://www.linkedin.com/in/premhari07
+- **Instagram**: https://www.instagram.com/prem_lynx_25/
+- **LeetCode**: https://leetcode.com/u/Prem_hari/
+
+## Content Structure
+- `/`: Main portfolio with Hero, About, Skills, Experience, Projects, and Contact sections.
+- `/resume`: View or download resume.
