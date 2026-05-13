@@ -48,6 +48,10 @@ export const metadata: Metadata = {
 
   metadataBase: new URL("https://prem-hari-portfolio.vercel.app"),
 
+  verification: {
+  google: "tHEJii4n5zrbkXCgSqAMaXDhSt1VSxVe5SZ46mByYEg",
+},
+
   openGraph: {
     title: "Prem Hari | Full Stack Developer",
     description:

@@ -27,7 +27,7 @@ export const projectsData = [
   {
   name: "Portfolio Website",
   description: "A responsive portfolio web application built with Next.js, React, and Tailwind CSS. Features dynamic project sections, smooth animations, SEO optimization, and fast performance for a modern developer showcase.",
-  github_link: "https://github.com/Premhari-7/Prem_Portfolio",
+  github_link: "https://github.com/Premhari-7/prem-portfolio-new",
   demo: "https://prem-hari-portfolio.vercel.app", // ✅ ADD THIS
   tech: ["Next.js", "React", "Tailwind CSS"]
 },
