@@ -44,6 +44,7 @@ export const projectsData = [
   name: "Nihongo Learning Platform",
   description: "A full-stack Japanese learning platform with JLPT-based learning modules, quizzes, AI chatbot integration, admin dashboard, video management, certificates, authentication, dark mode, and cloud deployment using Railway and MongoDB Atlas.",
   github_link: "https://github.com/Premhari-7/nihongo-learning-platform",
+  demo: "",
   tech: [
     "React Native",
     "Expo",
