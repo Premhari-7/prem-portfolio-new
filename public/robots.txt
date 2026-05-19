@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://prem-hari-portfolio.vercel.app/sitemap.xml
