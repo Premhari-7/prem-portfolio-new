@@ -13,8 +13,11 @@
 <br><br>
 
 <img src="https://img.shields.io/badge/Portfolio-Full%20Stack%20Developer-0A66C2?style=for-the-badge"/>
+
 <img src="https://img.shields.io/badge/MERN-Stack-1f6feb?style=for-the-badge"/>
+
 <img src="https://img.shields.io/badge/UI%2FUX-Design-24292F?style=for-the-badge"/>
+
 <img src="https://img.shields.io/badge/Open%20Source-Learning-blue?style=for-the-badge"/>
 
 </div>
@@ -117,17 +120,25 @@ Practical MERN Stack Experience
 
 ---
 
-# GitHub Statistics
+# Development Activity
 
 <div align="center">
 
-<img height="180em" src="https://github-readme-stats.vercel.app/api?username=Premhari-7&show_icons=true&theme=tokyonight&hide_border=true"/>
-
-<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Premhari-7&layout=compact&theme=tokyonight&hide_border=true"/>
+<img src="https://readme-typing-svg.demolab.com?font=Poppins&weight=600&size=24&pause=1000&color=58A6FF&center=true&vCenter=true&width=700&lines=Building+Projects;Learning+Full+Stack+Development;Exploring+AI+Applications;Designing+Modern+Interfaces" />
 
 <br><br>
 
-<img src="https://github-readme-streak-stats.herokuapp.com?user=Premhari-7&theme=tokyonight&hide_border=true"/>
+<img src="https://skillicons.dev/icons?i=react,nodejs,mongodb,python,tailwind,github,vscode" />
+
+<br><br>
+
+<img src="https://img.shields.io/badge/Frontend-React-blue?style=for-the-badge&logo=react"/>
+
+<img src="https://img.shields.io/badge/Backend-Node.js-green?style=for-the-badge&logo=node.js"/>
+
+<img src="https://img.shields.io/badge/Database-MongoDB-darkgreen?style=for-the-badge&logo=mongodb"/>
+
+<img src="https://img.shields.io/badge/AI-Python-yellow?style=for-the-badge&logo=python"/>
 
 </div>
 
@@ -177,11 +188,26 @@ https://prem-hari-portfolio.vercel.app/
 LeetCode  
 https://leetcode.com/u/Prem_hari/
 
+<br>
+
+Email  
+haripradeep185@gmail.com
+
 </div>
 
 ---
 
 <div align="center">
+
+# Prem Hari S
+
+Full Stack Developer • MERN Stack • UI/UX Design
+
+<br>
+
+<img src="https://skillicons.dev/icons?i=react,nodejs,mongodb,python,github,vscode" />
+
+<br><br>
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:141E30,50:243B55,100:0F2027&height=120&section=footer"/>
 
