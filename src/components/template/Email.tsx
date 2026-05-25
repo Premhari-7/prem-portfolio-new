@@ -17,6 +17,7 @@ import { selfData } from "@/constant";
 
 interface EmailTemplateProps {
   userName: string;
+  userEmail: string;
   contactReason: string;
   userMessage: string;
 }
@@ -40,87 +41,148 @@ export function EmailTemplate({
     {
       name: "LeetCode",
       url: `https://leetcode.com/${selfData.socials_username.leetcode}`,
-      icon: "https://cdn.iconscout.com/icon/free/png-256/leetcode-3521542-2944960.png",
+      icon:
+        "https://upload.wikimedia.org/wikipedia/commons/1/19/LeetCode_logo_black.png",
     },
     {
       name: "Instagram",
       url: `https://instagram.com/${selfData.socials_username.instagram}`,
       icon: "https://cdn-icons-png.flaticon.com/512/2111/2111463.png",
     },
-    // ❌ Twitter removed (you said you don’t want it)
   ];
 
   return (
     <Html>
       <Head />
+
       <Body style={main}>
         <Container style={container}>
           {/* HEADER */}
           <Section style={header}>
             <Row>
-              <Column style={{ width: "40px" }}>
-                <Img
-                  src="https://your-domain.vercel.app/images/logo.png"
-                  alt="PH"
-                  width="40"
-                  height="40"
-                />
+              <Column width={60}>
+                <div style={logoWrapper}>
+                  <Text style={logoEmoji}>👋</Text>
+                </div>
               </Column>
+
               <Column>
                 <Text style={brandText}>Prem Hari S</Text>
+
+                <Text style={subText}>
+                  Portfolio Communication Confirmation
+                </Text>
               </Column>
             </Row>
           </Section>
 
-          {/* BODY */}
-          <Section>
-            <Text style={heading}>Hey {userName}! 🚀</Text>
-
-            <Text style={text}>
-              Thanks a bunch for reaching out! 🎉 <br />
-              Your message just landed safely in my inbox, and I’ll get back to you soon.
+          {/* HERO SECTION */}
+          <Section style={heroSection}>
+            <Text style={heading}>
+              Your Message Has Been Received 🚀
             </Text>
 
             <Text style={text}>
-              Here's a quick recap of your message:
+              Hello {userName},
             </Text>
 
-            <Text style={label}>
-              📌 Reason: <strong>{contactReason}</strong>
+            <Text style={text}>
+              Thank you sincerely for taking the time to connect with me through
+              my portfolio website.
             </Text>
 
-            <Text style={label}>💬 Message:</Text>
-            <pre style={codeBlock}>{userMessage}</pre>
+            <Text style={text}>
+              I truly appreciate your interest and your message has been safely
+              delivered to my inbox. I’ll review it carefully and get back to
+              you as soon as possible.
+            </Text>
 
-           <Text>
-            I&apos;ll respond as soon as possible
-           </Text>
+            <Text style={text}>
+              In the meantime, feel free to explore my professional profiles and
+              connect with me across platforms below.
+            </Text>
+          </Section>
 
-            {/* SOCIALS */}
-            <Section style={socialSection}>
-              <table style={socialTable}>
-                <tbody>
-                  <tr>
-                    {socials.map((social) => (
-                      <td key={social.name} style={socialIconCol}>
-                        <Link href={social.url}>
-                          <Img
-                            src={social.icon}
-                            alt={social.name}
-                            width="28"
-                            height="28"
-                            style={socialIcon}
-                          />
-                        </Link>
-                      </td>
-                    ))}
-                  </tr>
-                </tbody>
-              </table>
+          {/* DETAILS */}
+          <Section style={detailsBox}>
+            <Text style={detailItem}>
+              <strong>Discussion Category</strong>
+              <br />
+              {contactReason}
+            </Text>
+
+            <Text style={messageTitle}>
+              Your Message
+            </Text>
+
+            <Section style={messageBox}>
+              <Text style={messageText}>
+                {userMessage}
+              </Text>
             </Section>
+          </Section>
+
+          {/* CONNECT */}
+          <Section style={connectSection}>
+            <Text style={connectTitle}>
+              Let’s Stay Connected
+            </Text>
+
+            <Text style={connectText}>
+              You can explore my work, projects, and professional journey
+              through the platforms below.
+            </Text>
+          </Section>
+
+          {/* SOCIAL LINKS */}
+          <Section style={socialSection}>
+            <table
+              width="100%"
+              cellPadding="0"
+              cellSpacing="0"
+              role="presentation"
+            >
+              <tbody>
+                <tr>
+                  {socials.map((social) => (
+                    <td
+                      key={social.name}
+                      align="center"
+                      style={socialIconCol}
+                    >
+                      <Link href={social.url}>
+                        <Img
+                          src={social.icon}
+                          alt={social.name}
+                          width="34"
+                          height="34"
+                          style={socialIcon}
+                        />
+                      </Link>
+
+                      <Text style={socialName}>
+                        {social.name}
+                      </Text>
+                    </td>
+                  ))}
+                </tr>
+              </tbody>
+            </table>
+          </Section>
+
+          {/* FOOTER */}
+          <Section style={footer}>
+            <Text style={footerText}>
+              Thank you once again for reaching out to Prem Hari S Portfolio.
+            </Text>
 
             <Text style={footerText}>
-              You're receiving this email because you contacted me via my portfolio.
+              This is an automated confirmation email acknowledging your
+              message submission.
+            </Text>
+
+            <Text style={footerCopyright}>
+              © 2026 Prem Hari S. All rights reserved.
             </Text>
           </Section>
         </Container>
@@ -129,70 +191,163 @@ export function EmailTemplate({
   );
 }
 
-/* STYLES */
+/* =========================
+   STYLES
+========================= */
+
 const main = {
-  backgroundColor: "#0a0a0f",
-  padding: "20px",
+  backgroundColor: "#050816",
+  padding: "24px 12px",
+  fontFamily: "Arial, sans-serif",
 };
 
 const container = {
-  backgroundColor: "#111827",
-  padding: "20px",
-  borderRadius: "10px",
+  background:
+    "linear-gradient(135deg, #0f172a 0%, #111827 50%, #1e1b4b 100%)",
+  borderRadius: "20px",
+  padding: "24px",
+  maxWidth: "680px",
+  margin: "0 auto",
+  border: "1px solid #312e81",
 };
 
 const header = {
-  marginBottom: "20px",
+  marginBottom: "30px",
+};
+
+const logoWrapper = {
+  width: "46px",
+  height: "46px",
+  borderRadius: "50%",
+  backgroundColor: "#7c3aed",
+  textAlign: "center" as const,
+};
+
+const logoEmoji = {
+  fontSize: "24px",
+  lineHeight: "46px",
+  margin: "0",
 };
 
 const brandText = {
-  fontSize: "18px",
   color: "#ffffff",
-  fontWeight: "bold",
+  fontSize: "24px",
+  fontWeight: "700",
+  margin: "0",
+};
+
+const subText = {
+  color: "#94a3b8",
+  fontSize: "13px",
+  marginTop: "6px",
+};
+
+const heroSection = {
+  marginBottom: "28px",
 };
 
 const heading = {
-  fontSize: "22px",
+  fontSize: "26px",
+  fontWeight: "700",
   color: "#a855f7",
-  fontWeight: "bold",
+  marginBottom: "18px",
+  lineHeight: "36px",
+  textAlign: "left" as const,
 };
 
 const text = {
+  color: "#dbe4ee",
+  fontSize: "15px",
+  lineHeight: "30px",
+  marginBottom: "14px",
+};
+
+const detailsBox = {
+  backgroundColor: "#111827",
+  borderRadius: "14px",
+  padding: "22px",
+  border: "1px solid #374151",
+};
+
+const detailItem = {
+  color: "#f8fafc",
+  fontSize: "15px",
+  marginBottom: "16px",
+  lineHeight: "28px",
+};
+
+const messageTitle = {
+  color: "#ffffff",
+  fontSize: "17px",
+  fontWeight: "700",
+  marginBottom: "12px",
+};
+
+const messageBox = {
+  backgroundColor: "#1e293b",
+  borderRadius: "10px",
+  padding: "18px",
+};
+
+const messageText = {
+  color: "#e2e8f0",
   fontSize: "14px",
-  color: "#e5e7eb",
+  lineHeight: "26px",
+};
+
+const connectSection = {
+  marginTop: "34px",
+  marginBottom: "22px",
+};
+
+const connectTitle = {
+  color: "#ffffff",
+  fontSize: "22px",
+  fontWeight: "700",
   marginBottom: "10px",
 };
 
-const label = {
+const connectText = {
+  color: "#cbd5e1",
   fontSize: "14px",
-  color: "#ffffff",
-};
-
-const codeBlock = {
-  backgroundColor: "#1f2937",
-  padding: "10px",
-  borderRadius: "6px",
-  color: "#d1d5db",
+  lineHeight: "26px",
 };
 
 const socialSection = {
-  marginTop: "20px",
-};
-
-const socialTable = {
-  width: "100%",
+  marginBottom: "28px",
 };
 
 const socialIconCol = {
-  padding: "5px",
+  padding: "10px",
 };
 
 const socialIcon = {
   display: "block",
+  margin: "0 auto",
+};
+
+const socialName = {
+  color: "#94a3b8",
+  fontSize: "12px",
+  marginTop: "8px",
+};
+
+const footer = {
+  borderTop: "1px solid #1e293b",
+  paddingTop: "22px",
 };
 
 const footerText = {
+  color: "#94a3b8",
   fontSize: "12px",
-  color: "#9ca3af",
-  marginTop: "20px",
+  textAlign: "center" as const,
+  marginBottom: "8px",
+  lineHeight: "22px",
+};
+
+const footerCopyright = {
+  color: "#64748b",
+  fontSize: "12px",
+  textAlign: "center" as const,
+  marginTop: "14px",
 };

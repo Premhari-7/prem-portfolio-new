@@ -4,11 +4,19 @@ import { render, pretty } from "@react-email/render";
 import validator from "validator";
 
 import { EmailTemplate } from "@/components/template/Email";
+import { NotificationEmail } from "@/components/template/NotificationEmail";
 
 export async function POST(request: Request) {
   const body = await request.json();
-  const { senderName, senderEmail, reasonToContact, senderMsg } = body;
 
+  const {
+    senderName,
+    senderEmail,
+    reasonToContact,
+    senderMsg,
+  } = body;
+
+  // Input Validation
   if (
     !senderName ||
     !senderEmail ||
@@ -19,9 +27,13 @@ export async function POST(request: Request) {
     typeof reasonToContact !== "string" ||
     typeof senderMsg !== "string"
   ) {
-    return NextResponse.json({ error: "Invalid input data" }, { status: 400 });
+    return NextResponse.json(
+      { error: "Invalid input data" },
+      { status: 400 }
+    );
   }
 
+  // Email Validation
   if (!validator.isEmail(senderEmail)) {
     return NextResponse.json(
       { error: "Email format is not valid" },
@@ -29,47 +41,48 @@ export async function POST(request: Request) {
     );
   }
 
-  try {
-    const qevResponse = await fetch(
-      `http://api.quickemailverification.com/v1/verify?email=${senderEmail}&apikey=${process.env.QEV_API_KEY}`
-    );
-
-    const data = await qevResponse.json();
-
-    if (data.result !== "valid") {
-      return NextResponse.json(
-        { error: "Email address is not valid" },
-        { status: 400 }
-      );
-    }
-  } catch (err) {
-    console.error("QuickEmailVerification API failed:", err);
-    return NextResponse.json(
-      { error: "Email validation service unavailable" },
-      { status: 500 }
-    );
-  }
-
-  const htmlContent = await pretty(
+  // EMAIL FOR YOU (Notification Mail)
+  const ownerHtml = await pretty(
     await render(
-      EmailTemplate({
+      NotificationEmail({
         userName: senderName,
+        userEmail: senderEmail,
         contactReason: reasonToContact,
         userMessage: senderMsg,
       })
     )
   );
 
-  const message = {
-    from: `"Prem Hari S - Portfolio Contact" <${process.env.email_from}>`, // ✅ changed
-    to: `${senderName} <${senderEmail}>`,
-    subject: "Thanks for reaching out! 🚀",
-    html: htmlContent,
-    headers: {
-      "X-Entity-Ref-ID": "newmail",
-    },
+  // EMAIL FOR SENDER (Auto Reply Mail)
+  const senderHtml = await pretty(
+    await render(
+      EmailTemplate({
+        userName: senderName,
+        userEmail: senderEmail,
+        contactReason: reasonToContact,
+        userMessage: senderMsg,
+      })
+    )
+  );
+
+  // Mail sent to YOU
+  const ownerMessage = {
+    from: `"Portfolio Contact" <${process.env.email_from}>`,
+    to: process.env.email_from,
+    replyTo: senderEmail,
+    subject: `New Portfolio Contact - ${reasonToContact}`,
+    html: ownerHtml,
   };
 
+  // Mail sent to SENDER
+  const senderMessage = {
+    from: `"Prem Hari S" <${process.env.email_from}>`,
+    to: senderEmail,
+    subject: "Thanks for contacting me !!",
+    html: senderHtml,
+  };
+
+  // Nodemailer Transport
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -79,15 +92,19 @@ export async function POST(request: Request) {
   });
 
   try {
-    await transporter.sendMail(message);
+    // Send both mails
+    await transporter.sendMail(ownerMessage);
+    await transporter.sendMail(senderMessage);
+
     return NextResponse.json(
       {
-        message: `Email has been sent to ${senderEmail} successfully`,
+        message: "Emails sent successfully",
       },
       { status: 200 }
     );
   } catch (err) {
-    console.error(`Error sending email to ${senderEmail}:`, err);
+    console.error("Error sending email:", err);
+
     return NextResponse.json(
       { error: "Failed to send email" },
       { status: 500 }

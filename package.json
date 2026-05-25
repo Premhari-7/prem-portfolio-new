@@ -16,6 +16,7 @@
     "@vercel/analytics": "^1.5.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "firebase": "^12.13.0",
     "motion": "^12.23.9",
     "next": "15.4.10",
     "nodemailer": "^7.0.5",

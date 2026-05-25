@@ -5,6 +5,9 @@ import { useState, useEffect } from "react";
 import { BsSend, BsSendCheck } from "react-icons/bs";
 import { Card } from "../ui/card";
 
+import { db } from "@/firebase";
+import { collection, addDoc } from "firebase/firestore";
+
 export const ContactFormCard = () => {
   const [isSending, setIsSending] = useState(false);
   const [isSent, setIsSent] = useState(false);
@@ -20,43 +23,58 @@ export const ContactFormCard = () => {
     setIsSending(true);
 
     const sendEmailPromise = new Promise(async (resolve, reject) => {
-      try {
-        const response = await fetch("/api/send", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            senderName: formValues.senderName,
-            senderEmail: formValues.senderEmail,
-            reasonToContact: formValues.reasonToContact,
-            senderMsg: formValues.senderMsg,
-          }),
-        });
+  try {
 
-        const data = await response.json();
-
-        if (response.ok) {
-          console.log("✅ Email sent successfully:", data.message);
-          setIsSent(true);
-          setFormValues({
-            senderName: "",
-            senderEmail: "",
-            reasonToContact: "General inquries",
-            senderMsg: "",
-          });
-          resolve(data.message);
-        } else {
-          console.error("❌ Failed to send email:", data.error);
-          reject(new Error(data.error || "Failed to send message"));
-        }
-      } catch (error) {
-        console.error("❌ Network error or unexpected error:", error);
-        reject(error);
-      } finally {
-        setIsSending(false);
-      }
+    await addDoc(collection(db, "messages"), {
+      senderName: formValues.senderName,
+      senderEmail: formValues.senderEmail,
+      reasonToContact: formValues.reasonToContact,
+      senderMsg: formValues.senderMsg,
+      createdAt: new Date(),
     });
+
+    const response = await fetch("/api/send", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        senderName: formValues.senderName,
+        senderEmail: formValues.senderEmail,
+        reasonToContact: formValues.reasonToContact,
+        senderMsg: formValues.senderMsg,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      console.log("✅ Email sent successfully:", data.message);
+
+      setIsSent(true);
+
+      setFormValues({
+        senderName: "",
+        senderEmail: "",
+        reasonToContact: "General inquries",
+        senderMsg: "",
+      });
+
+      resolve(data.message);
+
+    } else {
+      console.error("❌ Failed to send email:", data.error);
+      reject(new Error(data.error || "Failed to send message"));
+    }
+
+  } catch (error) {
+    console.error("❌ Network error or unexpected error:", error);
+    reject(error);
+
+  } finally {
+    setIsSending(false);
+  }
+});
 
     toast.promise(sendEmailPromise, {
       loading: "Sending your message...",
