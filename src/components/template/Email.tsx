@@ -39,12 +39,6 @@ export function EmailTemplate({
       icon: "https://cdn-icons-png.flaticon.com/512/145/145807.png",
     },
     {
-      name: "LeetCode",
-      url: `https://leetcode.com/${selfData.socials_username.leetcode}`,
-      icon:
-        "https://upload.wikimedia.org/wikipedia/commons/1/19/LeetCode_logo_black.png",
-    },
-    {
       name: "Instagram",
       url: `https://instagram.com/${selfData.socials_username.instagram}`,
       icon: "https://cdn-icons-png.flaticon.com/512/2111/2111463.png",
