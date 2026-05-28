@@ -1,5 +1,13 @@
 export const projectsData = [
   {
+    name: "Maatram Alumni Connect",
+    description:
+      "An alumni connection platform for Maatram Foundation to network, share opportunities, and build a strong community.",
+    github_link: "https://github.com/Premhari-7/Maatram-Alumni-Connect",
+    demo: "https://maatram-alumni-connect.vercel.app/",
+    tech: ["React", "Next.js", "Tailwind CSS"],
+  },
+  {
     name: "Scent Bite",
     description:
       "A perfume shop management web application with inventory tracking, billing system, low stock alerts, and customer management for real-world usage.",
