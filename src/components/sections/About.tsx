@@ -58,7 +58,7 @@ export const About = () => {
                   className="relative w-full h-full"
                 >
                   <Image
-                    src="/images/new-profile.png"
+                    src="/images/me.new.jpeg"
                     alt="Profile Picture"
                     fill
                     loading="lazy"
