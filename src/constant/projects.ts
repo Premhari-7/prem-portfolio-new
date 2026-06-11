@@ -1,5 +1,13 @@
 export const projectsData = [
   {
+    name: "Game of Thrones Universe",
+    description:
+      "A deeply immersive, visually stunning, and fully scroll-driven web experience that brings the world of Westeros to life using 3D particle physics and cinematic crossfades.",
+    github_link: "https://github.com/Premhari-7/GAME-OF-THRONES-UNIVERSE",
+    demo: "https://game-of-thrones-universe.vercel.app/",
+    tech: ["React", "Vite", "Three.js", "GSAP"],
+  },
+  {
     name: "Maatram Alumni Connect",
     description:
       "An alumni connection platform for Maatram Foundation to network, share opportunities, and build a strong community.",
