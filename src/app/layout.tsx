@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   applicationName: "Prem Hari Portfolio",
 
   title: {
-    default: "Prem Hari | Full Stack Developer",
+    default: "prem hari s | full stack developer",
     template: "%s | Prem Hari",
   },
 
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
 },
 
   openGraph: {
-    title: "Prem Hari | Full Stack Developer",
+    title: "prem hari s | full stack developer",
     description:
       "Portfolio of Prem Hari - Full Stack Developer building modern web applications using MERN Stack and Next.js.",
     url: "https://prem-hari-portfolio.vercel.app",
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Prem Hari | Full Stack Developer",
+    title: "prem hari s | full stack developer",
     description:
       "Portfolio of Prem Hari - MERN Stack and Next.js Developer.",
   },

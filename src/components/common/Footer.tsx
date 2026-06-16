@@ -85,11 +85,11 @@ export const Footer = () => {
               <Image
                 src="/images/logo.svg"
                 alt="Logo"
-                width={40}
-                height={40}
+                width={80}
+                height={80}
                 loading="lazy"
-                sizes="40px"
-                className="w-10 h-10 object-contain bg-transparent border border-primary/90 p-1.5 rounded-xl shadow-lg"
+                sizes="80px"
+                className="w-20 h-20 object-contain bg-transparent border border-primary/90 p-1.5 rounded-xl shadow-lg"
               />
             </motion.span>
             <h3
