@@ -47,8 +47,7 @@ export const Hero = () => {
             </motion.h1>
 
             <motion.p
-              className={`${mono.className} text-lg md:text-xl`}
-              style={{ color: "hsl(var(--secondary))" }}
+              className={`${mono.className} text-lg md:text-xl font-bold text-black dark:text-black`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.4 }}
