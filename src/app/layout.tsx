@@ -17,8 +17,8 @@ export const metadata: Metadata = {
   applicationName: "Prem Hari Portfolio",
 
   title: {
-    default: "prem hari s | full stack developer",
-    template: "%s | Prem Hari",
+    default: "Prem Hari S | Full Stack Developer Portfolio",
+    template: "%s | Prem Hari S",
   },
 
   description:
