@@ -21,15 +21,10 @@ interface DocumentWithFullscreen extends Document {
   msExitFullscreen?: () => Promise<void>;
 }
 
-
-
 export default function Resume() {
-
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   const PDF_URL = "/docs/resume.pdf";
-
-
 
   useEffect(() => {
     const handleFullscreenChange = () => {
@@ -57,8 +52,6 @@ export default function Resume() {
       );
     };
   }, []);
-
-
 
   const toggleFullscreen = () => {
     if (!isFullscreen) {
@@ -171,17 +164,14 @@ export default function Resume() {
           </motion.div>
 
           <motion.div
-            className="relative overflow-hidden rounded-3xl shadow-2xl z-10"
+            className="relative overflow-hidden rounded-3xl shadow-2xl z-10 mx-auto w-full"
+            style={{ maxWidth: "800px" }}
             initial={{ opacity: 0, y: 60, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{
               duration: 1,
               delay: 1.4,
               ease: [0.25, 0.46, 0.45, 0.94],
-            }}
-            whileHover={{
-              scale: 1.02,
-              transition: { duration: 0.3 },
             }}
           >
             <div className="absolute inset-0 bg-gradient-to-br from-card/30 via-card/20 to-card/30 backdrop-blur-xl pointer-events-none" />
@@ -190,32 +180,17 @@ export default function Resume() {
 
             <PDFErrorBoundary pdfUrl={PDF_URL}>
               <motion.div
-                className="pdf-container relative w-full overflow-hidden bg-white/95 backdrop-blur-sm rounded-3xl"
-                style={{ height: "800px" }}
+                className="pdf-container relative w-full overflow-hidden bg-white rounded-3xl h-[60vh] max-h-[130vw] md:h-[800px] md:max-h-none"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 1.6 }}
               >
-                <div className="pdf-viewer">
-                  <div
-                    className="flex justify-center items-start min-h-full p-4"
-                  >
-                    <iframe
-                      src={`${PDF_URL}#view=FitH&toolbar=0&navpanes=0&scrollbar=1`}
-                      width="100%"
-                      height="780px"
-                      className="border-0 shadow-lg rounded-lg"
-                      title="Resume PDF"
-                      style={{
-                        maxWidth: "100%",
-                        minHeight: "600px",
-                        background: "#ffffff",
-                      }}
-                      allow="fullscreen"
-                    />
-                  </div>
-                  </div>
-
+                <iframe
+                  src={`${PDF_URL}#view=FitH&toolbar=0&navpanes=0&scrollbar=1`}
+                  className="absolute inset-0 w-full h-full border-0 bg-white"
+                  title="Resume PDF"
+                  allow="fullscreen"
+                />
               </motion.div>
             </PDFErrorBoundary>
           </motion.div>
