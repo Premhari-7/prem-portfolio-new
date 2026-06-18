@@ -24,7 +24,7 @@ export default function ResumePDFViewer({
       file={pdfUrl}
       onLoadSuccess={onDocumentLoadSuccess}
       loading={<div className="text-gray-500 font-medium py-10">Loading Resume...</div>}
-      className="flex flex-col items-center gap-6 w-full h-auto overflow-visible"
+      className="flex flex-col items-center gap-6 w-full h-auto overflow-visible mx-auto"
     >
       {Array.from(new Array(numPages || 0), (el, index) => (
         <Page
@@ -32,7 +32,7 @@ export default function ResumePDFViewer({
           pageNumber={index + 1}
           width={pageWidth}
           renderTextLayer={false}
-          renderAnnotationLayer={false}
+          renderAnnotationLayer={true}
           className="shadow-2xl rounded-xl overflow-hidden bg-white"
         />
       ))}

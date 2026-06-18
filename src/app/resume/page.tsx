@@ -184,7 +184,7 @@ export default function Resume() {
 
           <motion.div
             ref={pdfContainerRef}
-            className={`relative z-10 mx-auto w-full flex justify-center ${
+            className={`fullscreen-scrollable relative z-10 mx-auto w-full flex justify-center ${
               isFullscreen ? "overflow-y-auto h-screen bg-black/95 py-6 sm:py-10" : "h-auto overflow-visible"
             }`}
             style={{ maxWidth: isFullscreen ? "100%" : "800px" }}

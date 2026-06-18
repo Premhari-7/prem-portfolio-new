@@ -673,3 +673,18 @@ body {
     backdrop-filter: blur(4px);
   }
 }
+
+/* Fullscreen mode scroll fix */
+.fullscreen-scrollable:fullscreen {
+  overflow-y: auto !important;
+  background-color: rgba(0, 0, 0, 0.95) !important;
+  display: block !important;
+  padding: 2rem 0 !important;
+}
+
+.fullscreen-scrollable:-webkit-full-screen {
+  overflow-y: auto !important;
+  background-color: rgba(0, 0, 0, 0.95) !important;
+  display: block !important;
+  padding: 2rem 0 !important;
+}
