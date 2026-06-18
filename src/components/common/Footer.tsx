@@ -75,8 +75,8 @@ export const Footer = () => {
         />
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-6 py-4 overflow-x-hidden">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-3">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-6 py-2 overflow-x-hidden">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-2">
           <div className="flex items-center space-x-3">
             <motion.span
               whileHover={{ scale: 1.05 }}
@@ -85,38 +85,38 @@ export const Footer = () => {
               <Image
                 src="/images/logo.svg"
                 alt="Logo"
-                width={48}
-                height={48}
+                width={40}
+                height={40}
                 loading="lazy"
-                sizes="48px"
-                className="w-12 h-12 object-contain bg-transparent border border-primary/90 p-1 rounded-xl shadow-lg"
+                sizes="40px"
+                className="w-10 h-10 object-contain bg-transparent border border-primary/90 p-1 rounded-xl shadow-lg"
               />
             </motion.span>
             <h3
-              className={`${quentine.className} text-xl font-semibold text-primary`}
+              className={`${quentine.className} text-lg font-semibold text-primary`}
             >
               Prem Hari S
             </h3>
           </div>
 
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-2">
             {socialLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 aria-label={link.label}
-                className="w-8 h-8 flex items-center justify-center rounded-lg border border-primary/30 bg-card/50 hover:bg-primary/10 hover:text-primary text-muted-foreground transition"
+                className="w-7 h-7 flex items-center justify-center rounded-lg border border-primary/30 bg-card/50 hover:bg-primary/10 hover:text-primary text-muted-foreground transition"
               >
-                <link.icon size={16} />
+                <link.icon size={14} />
               </a>
             ))}
           </div>
         </div>
 
-        <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent my-3" />
+        <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent my-2" />
 
-        <div className="text-xs text-center text-muted-foreground space-y-2">
-          <p className="flex items-center justify-center gap-2">
+        <div className="text-[10px] sm:text-xs text-center text-muted-foreground space-y-1">
+          <p className="flex items-center justify-center gap-1.5">
             Made with
             <button onClick={toggleHeart} className="text-primary">
               {isHeartFilled ? <TbHeartFilled /> : <TbHeart />}
@@ -129,7 +129,7 @@ export const Footer = () => {
               Prem Hari S
             </button>
           </p>
-          <span>Licensed under MIT</span>
+          <p>Licensed under MIT</p>
         </div>
       </div>
 
