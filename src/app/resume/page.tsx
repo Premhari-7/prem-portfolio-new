@@ -184,8 +184,10 @@ export default function Resume() {
 
           <motion.div
             ref={pdfContainerRef}
-            className="relative z-10 mx-auto w-full flex justify-center h-auto overflow-visible"
-            style={{ maxWidth: "800px" }}
+            className={`relative z-10 mx-auto w-full flex justify-center ${
+              isFullscreen ? "overflow-y-auto h-screen bg-black/95 py-6 sm:py-10" : "h-auto overflow-visible"
+            }`}
+            style={{ maxWidth: isFullscreen ? "100%" : "800px" }}
             initial={{ opacity: 0, y: 60, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{
