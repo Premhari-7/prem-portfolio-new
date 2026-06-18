@@ -32,7 +32,7 @@ export default function Resume() {
   const [pageWidth, setPageWidth] = useState(800);
   const pdfContainerRef = useRef<HTMLDivElement>(null);
 
-  const PDF_URL = "/docs/resume.pdf";
+  const PDF_URL = "/docs/Prem Hari S_Resume.pdf";
 
   useEffect(() => {
     const updateWidth = () => {
@@ -99,7 +99,7 @@ export default function Resume() {
       <Background />
       <Navbar />
 
-      <div className="container mx-auto px-4 pt-32 pb-20">
+      <div className="container mx-auto px-4 pt-32 pb-20 flex flex-col min-h-screen">
         <motion.div
           className="flex flex-col md:flex-row justify-between items-center gap-6 mb-12"
           initial={{ opacity: 0, y: -20 }}
@@ -182,7 +182,7 @@ export default function Resume() {
 
           <motion.div
             ref={pdfContainerRef}
-            className="relative z-10 mx-auto w-full flex justify-center"
+            className="relative z-10 mx-auto w-full flex justify-center h-auto overflow-visible"
             style={{ maxWidth: "800px" }}
             initial={{ opacity: 0, y: 60, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -197,7 +197,7 @@ export default function Resume() {
                 file={PDF_URL}
                 onLoadSuccess={onDocumentLoadSuccess}
                 loading={<div className="text-gray-500 font-medium py-10">Loading Resume...</div>}
-                className="flex flex-col items-center gap-6 w-full"
+                className="flex flex-col items-center gap-6 w-full h-auto overflow-visible"
               >
                 {Array.from(new Array(numPages || 0), (el, index) => (
                   <Page
