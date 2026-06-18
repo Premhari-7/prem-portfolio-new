@@ -10,11 +10,13 @@ import {
   HiOutlineArrowsExpand,
   HiExternalLink,
 } from "react-icons/hi";
-import { Document, Page, pdfjs } from "react-pdf";
-import "react-pdf/dist/Page/AnnotationLayer.css";
-import "react-pdf/dist/Page/TextLayer.css";
+import dynamic from "next/dynamic";
+import { Document, Page } from "react-pdf";
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+const ResumePDFViewer = dynamic(() => import("@/components/ResumePDFViewer"), {
+  ssr: false,
+  loading: () => <div className="text-gray-500 font-medium py-10">Loading PDF Viewer...</div>
+});
 
 interface HTMLDivElementWithFullscreen extends HTMLDivElement {
   webkitRequestFullscreen?: () => Promise<void>;
@@ -193,23 +195,12 @@ export default function Resume() {
             }}
           >
             <PDFErrorBoundary pdfUrl={PDF_URL}>
-              <Document
-                file={PDF_URL}
-                onLoadSuccess={onDocumentLoadSuccess}
-                loading={<div className="text-gray-500 font-medium py-10">Loading Resume...</div>}
-                className="flex flex-col items-center gap-6 w-full h-auto overflow-visible"
-              >
-                {Array.from(new Array(numPages || 0), (el, index) => (
-                  <Page
-                    key={`page_${index + 1}`}
-                    pageNumber={index + 1}
-                    width={pageWidth}
-                    renderTextLayer={false}
-                    renderAnnotationLayer={false}
-                    className="shadow-2xl rounded-xl overflow-hidden bg-white"
-                  />
-                ))}
-              </Document>
+              <ResumePDFViewer
+                pdfUrl={PDF_URL}
+                pageWidth={pageWidth}
+                onDocumentLoadSuccess={onDocumentLoadSuccess}
+                numPages={numPages}
+              />
             </PDFErrorBoundary>
           </motion.div>
         </div>
