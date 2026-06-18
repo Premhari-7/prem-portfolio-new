@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Navbar, Footer, Background } from "@/components/common";
 import { nasalization } from "@/app/fonts";
@@ -10,8 +10,13 @@ import {
   HiOutlineArrowsExpand,
   HiExternalLink,
 } from "react-icons/hi";
+import { Document, Page, pdfjs } from "react-pdf";
+import "react-pdf/dist/esm/Page/AnnotationLayer.css";
+import "react-pdf/dist/esm/Page/TextLayer.css";
 
-interface HTMLIFrameElementWithFullscreen extends HTMLIFrameElement {
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+
+interface HTMLDivElementWithFullscreen extends HTMLDivElement {
   webkitRequestFullscreen?: () => Promise<void>;
   msRequestFullscreen?: () => Promise<void>;
 }
@@ -23,8 +28,26 @@ interface DocumentWithFullscreen extends Document {
 
 export default function Resume() {
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [numPages, setNumPages] = useState<number>();
+  const [pageWidth, setPageWidth] = useState(800);
+  const pdfContainerRef = useRef<HTMLDivElement>(null);
 
   const PDF_URL = "/docs/resume.pdf";
+
+  useEffect(() => {
+    const updateWidth = () => {
+      // Give a little padding for mobile view (32px)
+      const width = Math.min(window.innerWidth - 32, 800);
+      setPageWidth(width);
+    };
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
+
+  function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
+    setNumPages(numPages);
+  }
 
   useEffect(() => {
     const handleFullscreenChange = () => {
@@ -43,10 +66,6 @@ export default function Resume() {
         handleFullscreenChange
       );
       document.removeEventListener(
-        "mozfullscreenchange",
-        handleFullscreenChange
-      );
-      document.removeEventListener(
         "MSFullscreenChange",
         handleFullscreenChange
       );
@@ -55,14 +74,12 @@ export default function Resume() {
 
   const toggleFullscreen = () => {
     if (!isFullscreen) {
-      const iframe = document.querySelector(
-        "iframe"
-      ) as HTMLIFrameElementWithFullscreen;
-      if (iframe?.requestFullscreen) {
-        iframe.requestFullscreen();
+      const container = pdfContainerRef.current as HTMLDivElementWithFullscreen | null;
+      if (container?.requestFullscreen) {
+        container.requestFullscreen();
         setIsFullscreen(true);
-      } else if (iframe?.webkitRequestFullscreen) {
-        iframe.webkitRequestFullscreen();
+      } else if (container?.webkitRequestFullscreen) {
+        container.webkitRequestFullscreen();
         setIsFullscreen(true);
       }
     } else {
@@ -164,7 +181,8 @@ export default function Resume() {
           </motion.div>
 
           <motion.div
-            className="relative overflow-hidden rounded-3xl shadow-2xl z-10 mx-auto w-full"
+            ref={pdfContainerRef}
+            className="relative z-10 mx-auto w-full flex justify-center"
             style={{ maxWidth: "800px" }}
             initial={{ opacity: 0, y: 60, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -174,24 +192,24 @@ export default function Resume() {
               ease: [0.25, 0.46, 0.45, 0.94],
             }}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-card/30 via-card/20 to-card/30 backdrop-blur-xl pointer-events-none" />
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 rounded-3xl pointer-events-none" />
-            <div className="absolute inset-0 border-2 border-transparent bg-gradient-to-br from-primary/20 via-transparent to-secondary/20 rounded-3xl bg-clip-border pointer-events-none" />
-
             <PDFErrorBoundary pdfUrl={PDF_URL}>
-              <motion.div
-                className="pdf-container relative w-full overflow-hidden bg-white rounded-3xl h-[60vh] max-h-[130vw] md:h-[800px] md:max-h-none"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 1.6 }}
+              <Document
+                file={PDF_URL}
+                onLoadSuccess={onDocumentLoadSuccess}
+                loading={<div className="text-gray-500 font-medium py-10">Loading Resume...</div>}
+                className="flex flex-col items-center gap-6 w-full"
               >
-                <iframe
-                  src={`${PDF_URL}#view=FitH&toolbar=0&navpanes=0&scrollbar=1`}
-                  className="absolute inset-0 w-full h-full border-0 bg-white"
-                  title="Resume PDF"
-                  allow="fullscreen"
-                />
-              </motion.div>
+                {Array.from(new Array(numPages || 0), (el, index) => (
+                  <Page
+                    key={`page_${index + 1}`}
+                    pageNumber={index + 1}
+                    width={pageWidth}
+                    renderTextLayer={false}
+                    renderAnnotationLayer={false}
+                    className="shadow-2xl rounded-xl overflow-hidden bg-white"
+                  />
+                ))}
+              </Document>
             </PDFErrorBoundary>
           </motion.div>
         </div>

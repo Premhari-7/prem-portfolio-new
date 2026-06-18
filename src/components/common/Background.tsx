@@ -31,7 +31,7 @@ export const Background = () => {
   return (
     <div
       ref={containerRef}
-      className="top-0 fixed -z-10 h-full w-full overflow-hidden"
+      className="top-0 fixed -z-10 h-[100dvh] w-full overflow-hidden"
     >
       {/* SVG Filters */}
       <svg className="absolute inset-0 w-0 h-0">
