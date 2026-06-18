@@ -75,8 +75,8 @@ export const Footer = () => {
         />
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-6 py-6 overflow-x-hidden">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-6 py-4 overflow-x-hidden">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-3">
           <div className="flex items-center space-x-3">
             <motion.span
               whileHover={{ scale: 1.05 }}
@@ -85,15 +85,15 @@ export const Footer = () => {
               <Image
                 src="/images/logo.svg"
                 alt="Logo"
-                width={80}
-                height={80}
+                width={48}
+                height={48}
                 loading="lazy"
-                sizes="80px"
-                className="w-20 h-20 object-contain bg-transparent border border-primary/90 p-1.5 rounded-xl shadow-lg"
+                sizes="48px"
+                className="w-12 h-12 object-contain bg-transparent border border-primary/90 p-1 rounded-xl shadow-lg"
               />
             </motion.span>
             <h3
-              className={`${quentine.className} text-2xl font-semibold text-primary`}
+              className={`${quentine.className} text-xl font-semibold text-primary`}
             >
               Prem Hari S
             </h3>
@@ -113,7 +113,7 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent my-4" />
+        <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent my-3" />
 
         <div className="text-xs text-center text-muted-foreground space-y-2">
           <p className="flex items-center justify-center gap-2">
