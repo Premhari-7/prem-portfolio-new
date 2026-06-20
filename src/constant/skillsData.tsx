@@ -22,6 +22,7 @@ import {
 } from "react-icons/fa6";
 
 import {
+  SiDocker,
   SiExpress,
   SiFirebase,
   SiFramer,
@@ -65,7 +66,7 @@ export const skillsData: SkillsDataProps[] = [
       { title: "Python", logoComponent: FaPython, color: "#3776AB" },
       { title: "MongoDB", logoComponent: SiMongodb, color: "#47A248" },
       { title: "MySQL", logoComponent: SiMysql, color: "#4479A1" },
-      { title: "Oracle SQL", logoComponent: GrOracle, color: "#F80000" },
+
     ],
   },
   {
@@ -86,7 +87,7 @@ export const skillsData: SkillsDataProps[] = [
       { title: "GitHub", logoComponent: FaGithub, color: "#d4d4d8" },
       { title: "Netlify", logoComponent: SiNetlify, color: "#00C7B7" },
       { title: "Postman", logoComponent: SiPostman, color: "#FF6C37" },
-      { title: "Replit", logoComponent: SiReplit, color: "#667881" },
+      { title: "Docker", logoComponent: SiDocker, color: "#2496ED" },
       { title: "Vercel", logoComponent: SiVercel, color: "#d4d4d8" },
       { title: "Firebase", logoComponent: SiFirebase, color: "#FFCA28" },
     ],

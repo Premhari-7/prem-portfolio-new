@@ -20,7 +20,7 @@ export const experienceData = [
     role: "Student Volunteer",
     year: "2025 - 2026 Present",
     description: [
-      "Completed 20+ physical verification activities ensuring data accuracy.",
+      "Completed 30+ physical verification activities ensuring data accuracy.",
       "Supported field-level operations and community initiatives.",
       "Improved teamwork and communication skills through real-world experience."
     ],
