@@ -30,7 +30,7 @@ const Marquee: FC<MarqueeProps> = ({ skills, direction }) => {
   useEffect(() => {
     const measureWidth = () => {
       if (marqueeRef.current) {
-        setMarqueeWidth(marqueeRef.current.scrollWidth / 2);
+        setMarqueeWidth(marqueeRef.current.scrollWidth / 4);
       }
     };
 
@@ -51,7 +51,7 @@ const Marquee: FC<MarqueeProps> = ({ skills, direction }) => {
       <div className="relative overflow-hidden py-2">
         <motion.div
           ref={marqueeRef}
-          className="flex flex-row gap-8 whitespace-nowrap"
+          className="flex flex-row whitespace-nowrap w-max"
           animate={marqueeWidth > 0 ? { x: animateX } : {}}
           transition={{
             repeat: Infinity,
@@ -59,7 +59,7 @@ const Marquee: FC<MarqueeProps> = ({ skills, direction }) => {
             ease: "linear",
           }}
         >
-          {[...skills, ...skills].map((skill, index) => (
+          {[...skills, ...skills, ...skills, ...skills].map((skill, index) => (
             <SkillCard
               key={`${skill.title}-${index}`}
               title={skill.title}
