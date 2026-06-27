@@ -98,8 +98,8 @@ export const Navbar = () => {
             >
               {isResumePage ? (
                 <a
-                  href="/docs/resume.pdf"
-                  download="Prem_Hari_S_Resume.pdf"
+                  href="/docs/Prem Hari Full stack developer Resume.pdf"
+                  download="Prem_Hari_Full_Stack_Developer_Resume.pdf"
                 >
                   Download Resume
                 </a>
@@ -138,8 +138,8 @@ export const Navbar = () => {
               >
                 {isResumePage ? (
                   <a
-                    href="/docs/resume.pdf"
-                    download="Prem_Hari_S_Resume.pdf"
+                    href="/docs/Prem Hari Full stack developer Resume.pdf"
+                    download="Prem_Hari_Full_Stack_Developer_Resume.pdf"
                     onClick={() => setIsMenuOpen(false)}
                     className="flex items-center justify-center"
                   >

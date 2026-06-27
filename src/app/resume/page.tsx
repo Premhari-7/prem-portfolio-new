@@ -34,7 +34,7 @@ export default function Resume() {
   const [pageWidth, setPageWidth] = useState(800);
   const pdfContainerRef = useRef<HTMLDivElement>(null);
 
-  const PDF_URL = "/docs/Prem Hari S_Resume.pdf";
+  const PDF_URL = "/docs/Prem Hari Full stack developer Resume.pdf";
 
   useEffect(() => {
     const updateWidth = () => {
@@ -159,7 +159,7 @@ export default function Resume() {
 
               <motion.a
                 href={PDF_URL}
-                download="Prem_Hari_Resume.pdf"
+                download="Prem_Hari_Full_Stack_Developer_Resume.pdf"
                 className="group relative flex items-center gap-2 px-6 py-3 rounded-xl overflow-hidden transition-all duration-300 font-medium text-primary-foreground"
                 style={{
                   background:
