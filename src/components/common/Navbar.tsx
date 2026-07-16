@@ -83,7 +83,7 @@ export const Navbar = () => {
 
             {/* ✅ Your Name from selfData */}
             <span
-              className={`${quentine.className} text-primary-foreground text-2xl sm:text-3xl font-bold`}
+              className={`${quentine.className} text-foreground text-2xl sm:text-3xl font-bold`}
             >
               {selfData.name}
             </span>

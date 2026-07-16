@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { MeshGradient } from "@paper-design/shaders-react";
+import LightPillar from "./LightPillar";
+import SplashCursor from "./SplashCursor";
 
 export const Background = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -31,56 +32,39 @@ export const Background = () => {
   return (
     <div
       ref={containerRef}
-      className="top-0 fixed -z-10 h-[100dvh] w-full overflow-hidden"
+      className="top-0 fixed -z-10 h-[100dvh] w-full overflow-hidden bg-[#090514] pointer-events-none"
     >
-      {/* SVG Filters */}
-      <svg className="absolute inset-0 w-0 h-0">
-        <defs>
-          <filter
-            id="glass-effect"
-            x="-50%"
-            y="-50%"
-            width="200%"
-            height="200%"
-          >
-            <feTurbulence baseFrequency="0.005" numOctaves="1" result="noise" />
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="0.3" />
-            <feColorMatrix
-              type="matrix"
-              values="1 0 0 0 0.02
-                      0 1 0 0 0.02
-                      0 0 1 0 0.05
-                      0 0 0 0.9 0"
-              result="tint"
-            />
-          </filter>
-          <filter
-            id="gooey-filter"
-            x="-50%"
-            y="-50%"
-            width="200%"
-            height="200%"
-          >
-            <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
-            <feColorMatrix
-              in="blur"
-              mode="matrix"
-              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
-              result="gooey"
-            />
-            <feComposite in="SourceGraphic" in2="gooey" operator="atop" />
-          </filter>
-        </defs>
-      </svg>
-
-      {/* Background Shaders */}
-      <MeshGradient
-        className="absolute inset-0 w-full h-full"
-        colors={["#000000", "#8b5cf6", "#ffffff", "#1e1b4b", "#4c1d95"]}
-        speed={0.3}
-      />
-      {/* Optimized: Removed second MeshGradient layer for performance.
-          The first layer provides the core visual. */}
+      <div className="absolute inset-0 w-full h-full">
+        <LightPillar
+          topColor="#2f2a40"
+          bottomColor="#FF9FFC"
+          intensity={1}
+          rotationSpeed={0.3}
+          glowAmount={0.002}
+          pillarWidth={8}
+          pillarHeight={0.4}
+          noiseIntensity={0}
+          pillarRotation={25}
+          interactive={false}
+          mixBlendMode="screen"
+          quality="medium"
+        />
+        <SplashCursor
+          SIM_RESOLUTION={64}
+          DYE_RESOLUTION={512}
+          PRESSURE_ITERATIONS={10}
+          DENSITY_DISSIPATION={3.5}
+          VELOCITY_DISSIPATION={2}
+          PRESSURE={0.1}
+          CURL={3}
+          SPLAT_RADIUS={0.2}
+          SPLAT_FORCE={6000}
+          COLOR_UPDATE_SPEED={10}
+          SHADING={false}
+          RAINBOW_MODE={false}
+          COLOR="#FF9FFC"
+        />
+      </div>
     </div>
   );
 };
