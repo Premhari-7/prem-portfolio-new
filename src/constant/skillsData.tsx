@@ -31,7 +31,6 @@ import {
   SiNetlify,
   SiNextdotjs,
   SiPostman,
-  SiReplit,
   SiTailwindcss,
   SiTypescript,
   SiVercel,
@@ -40,7 +39,6 @@ import {
 import { GiBrain } from "react-icons/gi";
 import { MdApi } from "react-icons/md";
 import { TbBrandCpp } from "react-icons/tb";
-import { GrOracle } from "react-icons/gr";
 
 interface LogoProps {
   title: string;

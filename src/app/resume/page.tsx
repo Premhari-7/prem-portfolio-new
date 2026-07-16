@@ -11,7 +11,7 @@ import {
   HiExternalLink,
 } from "react-icons/hi";
 import dynamic from "next/dynamic";
-import { Document, Page } from "react-pdf";
+import { Document } from "react-pdf";
 
 const ResumePDFViewer = dynamic(() => import("@/components/ResumePDFViewer"), {
   ssr: false,
