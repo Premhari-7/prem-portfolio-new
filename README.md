@@ -1,26 +1,25 @@
 <div align="center">
 
-<!-- Animated Header -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=timeGradient&height=300&section=header&text=Prem%20Hari%20S&fontSize=70&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Full%20Stack%20Developer%20|%20MERN%20Stack%20|%20Next.js&descAlignY=55&descAlign=50" alt="Header" />
+<img src="https://prem-hari-portfolio.vercel.app/android-chrome-192x192.png" width="120" height="120" alt="Prem Hari Logo" style="border-radius: 50%; margin-bottom: 20px;" />
 
-<!-- Typing Animation -->
+<br>
+
 <a href="https://prem-hari-portfolio.vercel.app/" target="_blank">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=24&pause=1000&color=9C27B0&center=true&vCenter=true&width=600&lines=Welcome+to+my+Portfolio!;Building+Modern+Web+Applications;MERN+Stack+Specialist;Passionate+UI%2FUX+Designer" alt="Typing Animation" />
+  <img src="https://readme-typing-svg.demolab.com?font=Space+Grotesk&weight=700&size=36&pause=1000&color=FF9FFC&center=true&vCenter=true&width=800&height=80&lines=Prem+Hari+S;Full+Stack+Developer;Crafting+Digital+Experiences;Building+Scalable+Web+Apps" alt="Typing Animation" />
 </a>
 
-<!-- Quick Links / Badges -->
 <p align="center">
   <a href="https://prem-hari-portfolio.vercel.app/" target="_blank">
-    <img src="https://img.shields.io/badge/Live_Portfolio-090514?style=for-the-badge&logo=vercel&logoColor=white&color=a855f7" alt="Portfolio" />
+    <img src="https://img.shields.io/badge/Live_Portfolio-090514?style=for-the-badge&logo=vercel&logoColor=white&color=5227FF" alt="Portfolio" />
   </a>
   <a href="https://www.linkedin.com/in/premhari07" target="_blank">
-    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+    <img src="https://img.shields.io/badge/LinkedIn-090514?style=for-the-badge&logo=linkedin&logoColor=white&color=5227FF" alt="LinkedIn" />
   </a>
   <a href="mailto:haripradeep185@gmail.com">
-    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
+    <img src="https://img.shields.io/badge/Email-090514?style=for-the-badge&logo=gmail&logoColor=white&color=5227FF" alt="Email" />
   </a>
   <a href="https://leetcode.com/u/Prem_hari/" target="_blank">
-    <img src="https://img.shields.io/badge/LeetCode-FFA116?style=for-the-badge&logo=leetcode&logoColor=white" alt="LeetCode" />
+    <img src="https://img.shields.io/badge/LeetCode-090514?style=for-the-badge&logo=leetcode&logoColor=white&color=5227FF" alt="LeetCode" />
   </a>
 </p>
 
@@ -28,31 +27,27 @@
 
 ---
 
-## 👨‍💻 About Me
+## About
 
-Hello! I'm **Prem Hari S**, a Full Stack Developer driven by curiosity and the urge to build things that actually work in the real world. I enjoy transforming ideas into functional, beautiful web applications by balancing clean design with solid backend logic. 
+I am a Full Stack Developer driven by curiosity and the urge to build functional, scalable web applications. I focus on bridging the gap between clean frontend design and robust backend architecture.
 
-- 🔭 I’m currently building **modern web apps using Next.js and the MERN stack**
-- 🧠 I'm exploring **AI Integration & Real-Time Systems**
-- ⚡ Fun fact: Most of my time goes into experimenting, debugging, and refining small details that make a big difference in user experience!
+- Focused on **Next.js** and the **MERN stack**
+- Exploring **Real-Time Systems** and **AI Integrations**
+- Transforming complex problems into elegant, user-centric solutions
 
 ---
 
-## 🛠️ Tech Stack & Tools
+## Tech Stack & Tools
 
 <div align="center">
 
-### **Languages & Frameworks**
-<img src="https://skillicons.dev/icons?i=js,ts,python,react,nextjs,nodejs,express,html,css,tailwind" alt="Tech Stack" />
-
-### **Databases & Tools**
-<img src="https://skillicons.dev/icons?i=mongodb,mysql,git,github,vscode,postman,figma,vercel" alt="Tools" />
+<img src="https://skillicons.dev/icons?i=js,ts,python,react,nextjs,nodejs,express,mongodb,mysql,tailwind,git,github,vscode,figma,vercel&theme=dark" alt="Tech Stack" />
 
 </div>
 
 ---
 
-## 🚀 Featured Projects
+## Featured Projects
 
 | Project | Description | Role |
 |----------|-------------|------|
@@ -65,38 +60,22 @@ Hello! I'm **Prem Hari S**, a Full Stack Developer driven by curiosity and the u
 
 <div align="center">
   <a href="https://prem-hari-portfolio.vercel.app/" target="_blank">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&pause=1000&color=58A6FF&center=true&vCenter=true&width=500&lines=Click+here+to+see+them+live+on+my+Portfolio!" alt="Portfolio Link" />
+    <img src="https://readme-typing-svg.demolab.com?font=Space+Grotesk&weight=600&size=18&pause=1000&color=FF9FFC&center=true&vCenter=true&width=500&lines=View+live+projects+on+my+Portfolio" alt="Portfolio Link" />
   </a>
 </div>
 
 ---
 
-## 💼 Experience
+## Experience
 
-- **Maatram Foundation** *(Volunteer Operations)*
-  - Assisted with physical verification and scholarship activities.
-- **NxtLogic** *(MERN Stack Intern)*
-  - Developed full-stack web applications and gained practical experience in real-world environments.
+**Maatram Foundation** (Volunteer Operations)
+- Assisted with physical verification and scholarship activities.
 
----
-
-## 📊 GitHub Analytics
-
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=Premhari-7&show_icons=true&theme=radical&hide_border=true&bg_color=090514" width="48%" alt="GitHub Stats" />
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Premhari-7&theme=radical&hide_border=true&background=090514" width="48%" alt="GitHub Streak" />
-</div>
-
-<br>
-
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Premhari-7&layout=compact&theme=radical&hide_border=true&bg_color=090514" width="48%" alt="Top Languages" />
-</div>
+**NxtLogic** (MERN Stack Intern)
+- Developed full-stack web applications and gained practical experience in real-world environments.
 
 ---
 
 <div align="center">
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=timeGradient&height=120&section=footer" alt="Footer" />
-
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=5227FF&height=4&section=footer" alt="Footer Line" />
 </div>
