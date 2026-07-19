@@ -1,214 +1,102 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:141E30,50:243B55,100:0F2027&height=260&section=header&text=Prem%20Hari%20S&fontSize=48&fontColor=ffffff&animation=fadeIn&fontAlignY=38"/>
+<!-- Animated Header -->
+<img src="https://capsule-render.vercel.app/api?type=waving&color=timeGradient&height=300&section=header&text=Prem%20Hari%20S&fontSize=70&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Full%20Stack%20Developer%20|%20MERN%20Stack%20|%20Next.js&descAlignY=55&descAlign=50" alt="Header" />
 
-<br>
-
-<img src="https://readme-typing-svg.demolab.com?font=Poppins&weight=600&size=30&pause=1000&color=58A6FF&center=true&vCenter=true&width=1000&lines=Full+Stack+Developer;MERN+Stack+Developer;UI%2FUX+Designer;Building+Modern+Web+Applications" />
-
-<br><br>
-
-<img src="https://skillicons.dev/icons?i=react,nextjs,nodejs,express,mongodb,tailwind,js,html,css,python,github,vscode" />
-
-<br><br>
-
-<img src="https://img.shields.io/badge/Portfolio-Full%20Stack%20Developer-0A66C2?style=for-the-badge"/>
-
-<img src="https://img.shields.io/badge/MERN-Stack-1f6feb?style=for-the-badge"/>
-
-<img src="https://img.shields.io/badge/UI%2FUX-Design-24292F?style=for-the-badge"/>
-
-<img src="https://img.shields.io/badge/Open%20Source-Learning-blue?style=for-the-badge"/>
-
-</div>
-
----
-
-# About
-
-Prem Hari S is a Full Stack Developer focused on building scalable web applications with modern frontend design and strong backend architecture.
-
-Specialized in:
-- MERN Stack Development
-- UI/UX Design
-- Real-Time Systems
-- Authentication Systems
-- AI Integrated Applications
-
-Focused on creating projects that combine clean interfaces, performance, and practical real-world functionality.
-
----
-
-# Portfolio Website
-
-<div align="center">
-
+<!-- Typing Animation -->
 <a href="https://prem-hari-portfolio.vercel.app/" target="_blank">
-
-<img src="https://readme-typing-svg.demolab.com?font=Poppins&weight=600&size=24&pause=1000&color=58A6FF&center=true&vCenter=true&width=700&lines=Visit+Portfolio;prem-hari-portfolio.vercel.app" />
-
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=24&pause=1000&color=9C27B0&center=true&vCenter=true&width=600&lines=Welcome+to+my+Portfolio!;Building+Modern+Web+Applications;MERN+Stack+Specialist;Passionate+UI%2FUX+Designer" alt="Typing Animation" />
 </a>
 
-<br><br>
-
-<a href="https://prem-hari-portfolio.vercel.app/" target="_blank">
-<img src="https://img.shields.io/badge/View%20Portfolio-0A66C2?style=for-the-badge&logo=vercel&logoColor=white"/>
-</a>
+<!-- Quick Links / Badges -->
+<p align="center">
+  <a href="https://prem-hari-portfolio.vercel.app/" target="_blank">
+    <img src="https://img.shields.io/badge/Live_Portfolio-090514?style=for-the-badge&logo=vercel&logoColor=white&color=a855f7" alt="Portfolio" />
+  </a>
+  <a href="https://www.linkedin.com/in/premhari07" target="_blank">
+    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+  </a>
+  <a href="mailto:haripradeep185@gmail.com">
+    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
+  </a>
+  <a href="https://leetcode.com/u/Prem_hari/" target="_blank">
+    <img src="https://img.shields.io/badge/LeetCode-FFA116?style=for-the-badge&logo=leetcode&logoColor=white" alt="LeetCode" />
+  </a>
+</p>
 
 </div>
 
 ---
 
-# Featured Projects
+## 👨‍💻 About Me
+
+Hello! I'm **Prem Hari S**, a Full Stack Developer driven by curiosity and the urge to build things that actually work in the real world. I enjoy transforming ideas into functional, beautiful web applications by balancing clean design with solid backend logic. 
+
+- 🔭 I’m currently building **modern web apps using Next.js and the MERN stack**
+- 🧠 I'm exploring **AI Integration & Real-Time Systems**
+- ⚡ Fun fact: Most of my time goes into experimenting, debugging, and refining small details that make a big difference in user experience!
+
+---
+
+## 🛠️ Tech Stack & Tools
 
 <div align="center">
 
-| Project | Description |
-|----------|-------------|
-| Scent Bite | Full-stack perfume shop management system |
-| Plant Disease Analyzer AI | AI-powered disease prediction platform |
-| Smart Parking System | Real-time parking slot booking application |
-| GUVI Auth System | Authentication system with dual database architecture |
+### **Languages & Frameworks**
+<img src="https://skillicons.dev/icons?i=js,ts,python,react,nextjs,nodejs,express,html,css,tailwind" alt="Tech Stack" />
+
+### **Databases & Tools**
+<img src="https://skillicons.dev/icons?i=mongodb,mysql,git,github,vscode,postman,figma,vercel" alt="Tools" />
 
 </div>
 
 ---
 
-# Experience
+## 🚀 Featured Projects
 
-## Maatram Foundation
+| Project | Description | Role |
+|----------|-------------|------|
+| **Scent Bite** | Full-stack perfume shop management system with dynamic cart and checkout. | Full Stack Developer |
+| **Plant Disease Analyzer** | AI-powered disease prediction platform leveraging machine learning models. | AI Integration & Frontend |
+| **Smart Parking System** | Real-time parking slot booking application with live availability tracking. | Backend Architect |
+| **GUVI Auth System** | Scalable authentication system utilizing a dual-database architecture. | Full Stack Developer |
 
-```txt
-Volunteer Operations
-Physical Verification Support
-Scholarship Assistance Activities
-```
-
----
-
-## NxtLogic — MERN Stack Internship
-
-```txt
-Frontend and Backend Development
-Full Stack Web Application Development
-Practical MERN Stack Experience
-```
-
----
-
-# Tech Stack
+<br>
 
 <div align="center">
-
-## Frontend
-
-<img src="https://skillicons.dev/icons?i=react,nextjs,tailwind,html,css,js" />
-
-<br><br>
-
-## Backend
-
-<img src="https://skillicons.dev/icons?i=nodejs,express,mongodb,mysql" />
-
-<br><br>
-
-## Tools
-
-<img src="https://skillicons.dev/icons?i=git,github,vscode,postman" />
-
+  <a href="https://prem-hari-portfolio.vercel.app/" target="_blank">
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&pause=1000&color=58A6FF&center=true&vCenter=true&width=500&lines=Click+here+to+see+them+live+on+my+Portfolio!" alt="Portfolio Link" />
+  </a>
 </div>
 
 ---
 
-# Development Activity
+## 💼 Experience
 
-<div align="center">
-
-<img src="https://readme-typing-svg.demolab.com?font=Poppins&weight=600&size=24&pause=1000&color=58A6FF&center=true&vCenter=true&width=700&lines=Building+Projects;Learning+Full+Stack+Development;Exploring+AI+Applications;Designing+Modern+Interfaces" />
-
-<br><br>
-
-<img src="https://skillicons.dev/icons?i=react,nodejs,mongodb,python,tailwind,github,vscode" />
-
-<br><br>
-
-<img src="https://img.shields.io/badge/Frontend-React-blue?style=for-the-badge&logo=react"/>
-
-<img src="https://img.shields.io/badge/Backend-Node.js-green?style=for-the-badge&logo=node.js"/>
-
-<img src="https://img.shields.io/badge/Database-MongoDB-darkgreen?style=for-the-badge&logo=mongodb"/>
-
-<img src="https://img.shields.io/badge/AI-Python-yellow?style=for-the-badge&logo=python"/>
-
-</div>
+- **Maatram Foundation** *(Volunteer Operations)*
+  - Assisted with physical verification and scholarship activities.
+- **NxtLogic** *(MERN Stack Intern)*
+  - Developed full-stack web applications and gained practical experience in real-world environments.
 
 ---
 
-# Connect
+## 📊 GitHub Analytics
 
 <div align="center">
-
-<a href="https://github.com/Premhari-7">
-<img src="https://skillicons.dev/icons?i=github" />
-</a>
-
-<a href="https://www.linkedin.com/in/premhari07">
-<img src="https://skillicons.dev/icons?i=linkedin" />
-</a>
-
-<a href="mailto:haripradeep185@gmail.com">
-<img src="https://skillicons.dev/icons?i=gmail" />
-</a>
-
-<a href="https://prem-hari-portfolio.vercel.app/">
-<img src="https://skillicons.dev/icons?i=vercel" />
-</a>
-
+  <img src="https://github-readme-stats.vercel.app/api?username=Premhari-7&show_icons=true&theme=radical&hide_border=true&bg_color=090514" width="48%" alt="GitHub Stats" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Premhari-7&theme=radical&hide_border=true&background=090514" width="48%" alt="GitHub Streak" />
 </div>
 
 <br>
 
 <div align="center">
-
-GitHub  
-https://github.com/Premhari-7
-
-<br>
-
-LinkedIn  
-https://www.linkedin.com/in/premhari07
-
-<br>
-
-Portfolio  
-https://prem-hari-portfolio.vercel.app/
-
-<br>
-
-LeetCode  
-https://leetcode.com/u/Prem_hari/
-
-<br>
-
-Email  
-haripradeep185@gmail.com
-
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Premhari-7&layout=compact&theme=radical&hide_border=true&bg_color=090514" width="48%" alt="Top Languages" />
 </div>
 
 ---
 
 <div align="center">
 
-# Prem Hari S
-
-Full Stack Developer • MERN Stack • UI/UX Design
-
-<br>
-
-<img src="https://skillicons.dev/icons?i=react,nodejs,mongodb,python,github,vscode" />
-
-<br><br>
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:141E30,50:243B55,100:0F2027&height=120&section=footer"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=timeGradient&height=120&section=footer" alt="Footer" />
 
 </div>
