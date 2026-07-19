@@ -5,7 +5,7 @@
 <br>
 
 <a href="https://prem-hari-portfolio.vercel.app/" target="_blank">
-  <img src="https://readme-typing-svg.demolab.com?font=Space+Grotesk&weight=700&size=36&pause=1000&color=FF9FFC&center=true&vCenter=true&width=800&height=80&lines=Prem+Hari+S;Full+Stack+Developer;Crafting+Digital+Experiences;Building+Scalable+Web+Apps" alt="Typing Animation" />
+  <img src="https://readme-typing-svg.demolab.com?font=Space+Grotesk&weight=700&size=36&pause=1000&color=38BDF8&center=true&vCenter=true&width=800&height=80&lines=Prem+Hari+S;Full+Stack+Developer;Crafting+Digital+Experiences;Building+Scalable+Web+Apps" alt="Typing Animation" />
 </a>
 
 <p align="center">
@@ -60,7 +60,7 @@ I am a Full Stack Developer driven by curiosity and the urge to build functional
 
 <div align="center">
   <a href="https://prem-hari-portfolio.vercel.app/" target="_blank">
-    <img src="https://readme-typing-svg.demolab.com?font=Space+Grotesk&weight=600&size=18&pause=1000&color=FF9FFC&center=true&vCenter=true&width=500&lines=View+live+projects+on+my+Portfolio" alt="Portfolio Link" />
+    <img src="https://readme-typing-svg.demolab.com?font=Space+Grotesk&weight=600&size=18&pause=1000&color=38BDF8&center=true&vCenter=true&width=500&lines=View+live+projects+on+my+Portfolio" alt="Portfolio Link" />
   </a>
 </div>
 
