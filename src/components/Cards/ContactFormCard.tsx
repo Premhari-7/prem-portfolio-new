@@ -148,10 +148,11 @@ export const ContactFormCard = () => {
       }}
     >
       <Card
-        className="relative overflow-hidden backdrop-blur-xl border transition-all duration-700 h-full flex flex-col shadow-xl hover:shadow-2xl group-hover:shadow-luxury-hover-glow/40"
+        className="relative overflow-hidden backdrop-blur-[40px] border transition-all duration-700 h-full flex flex-col hover:shadow-2xl group-hover:shadow-luxury-hover-glow/40 rounded-3xl"
         style={{
           background: "hsl(var(--glass-bg))",
           borderColor: "hsl(var(--glass-border))",
+          boxShadow: "var(--glass-glow)",
           transformStyle: "preserve-3d",
         }}
       >

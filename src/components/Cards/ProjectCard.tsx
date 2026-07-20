@@ -60,11 +60,11 @@ export const ProjectCard: FC<ProjectCardProps> = ({
       className="group h-full"
     >
       <Card
-        className="relative overflow-hidden backdrop-blur-xl border transition-all duration-500 h-full flex flex-col shadow-xl hover:shadow-2xl group-hover:shadow-luxury-hover-glow/30 rounded-2xl"
+        className="relative overflow-hidden backdrop-blur-[40px] border transition-all duration-500 h-full flex flex-col hover:shadow-2xl group-hover:shadow-luxury-hover-glow/30 rounded-3xl"
         style={{
           background: "hsl(var(--glass-bg))",
           borderColor: "hsl(var(--glass-border))",
-          borderRadius: "1rem",
+          boxShadow: "var(--glass-glow)",
         }}
       >
         {/* Glass shimmer effect */}

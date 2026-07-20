@@ -89,17 +89,18 @@ body {
       0px 12px 24px 0px hsl(245 90% 0% / 1),
       0px 4px 8px 0px hsl(275 50% 30% / 0.4);
 
-    /* Dark Glass Effects - Enhanced Obsidian-like surfaces */
-    --glass-bg: hsl(245 30% 3% / 0.9);
-    --glass-bg-light: hsl(245 30% 5% / 0.8);
-    --glass-border: hsl(275 40% 35% / 0.5);
-    --glass-border-hover: hsl(275 50% 45% / 0.7);
-    --glass-glow: 0px 0px 32px hsl(275 60% 45% / 0.4);
-    --glass-glow-intense: 0px 0px 48px hsl(275 70% 50% / 0.6);
+    /* Liquid Glass Effects - iOS Style (Authentic) */
+    --glass-bg: 0 0% 100% / 0.08; /* Slightly more opaque for thick glass */
+    --glass-bg-light: 0 0% 100% / 0.12;
+    --glass-border: 0 0% 100% / 0.2; /* Consistent border around the glass */
+    --glass-border-hover: 0 0% 100% / 0.3;
+    /* Soft diffuse shadow + inner top highlight characteristic of iOS */
+    --glass-glow: 0 8px 32px 0 rgba(0, 0, 0, 0.3), inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
+    --glass-glow-intense: 0 8px 32px 0 rgba(0, 0, 0, 0.4), inset 0 1px 1px 0 rgba(255, 255, 255, 0.25);
 
-    /* Enhanced Glass Backdrop */
-    --glass-backdrop: blur(16px) saturate(180%);
-    --glass-backdrop-intense: blur(24px) saturate(200%);
+    /* Authentic iOS Glass Backdrop */
+    --glass-backdrop: blur(40px) saturate(200%);
+    --glass-backdrop-intense: blur(48px) saturate(200%);
 
     /* Glass Shimmer Effect */
     --glass-shimmer: linear-gradient(
@@ -642,8 +643,8 @@ body {
   /* Dark mode enhancements */
   @media (prefers-color-scheme: dark) {
     :root {
-      --glass-bg: hsl(245 30% 3% / 0.95);
-      --glass-bg-light: hsl(245 30% 5% / 0.9);
+      --glass-bg: 0 0% 100% / 0.03;
+      --glass-bg-light: 0 0% 100% / 0.08;
     }
   }
 

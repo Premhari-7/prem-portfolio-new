@@ -70,10 +70,11 @@ export const ExperienceCard: FC<ExperienceCardProps> = ({
       {/* Content */}
       <motion.div className="flex-1">
         <Card
-          className="relative overflow-hidden backdrop-blur-xl border transition-all duration-500 shadow-xl hover:shadow-2xl group-hover:shadow-luxury-hover-glow/20"
+          className="relative overflow-hidden backdrop-blur-[40px] border transition-all duration-500 hover:shadow-2xl group-hover:shadow-luxury-hover-glow/20 rounded-3xl"
           style={{
             background: "hsl(var(--glass-bg))",
             borderColor: "hsl(var(--glass-border))",
+            boxShadow: "var(--glass-glow)",
           }}
         >
           {/* Glass shimmer effect */}
