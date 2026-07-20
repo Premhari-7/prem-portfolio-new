@@ -400,7 +400,6 @@ body {
 
   /* Navigation styling - Authentic iOS Dynamic Island Glass */
   .floating-nav {
-    background-image: var(--glass-noise);
     background-color: hsl(var(--glass-bg));
     backdrop-filter: var(--glass-backdrop);
     border: 1px solid hsl(var(--glass-border));
