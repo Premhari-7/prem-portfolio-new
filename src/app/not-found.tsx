@@ -28,7 +28,7 @@ export default function NotFound() {
         <h2 className="text-2xl font-bold mb-4 text-foreground font-inter">Page Not Found</h2>
         
         <p className="text-lg mb-8 font-inter text-foreground/70 max-w-md">
-          Oops! Wrong planet? Looks like you've crash-landed into a crater in the dark luxury multiverse.
+          Oops! Wrong planet? Looks like you&apos;ve crash-landed into a crater in the dark luxury multiverse.
         </p>
         
         <Link href="/" className="px-8 py-3 rounded-xl font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-1 bg-gradient-to-r from-primary to-secondary text-primary-foreground font-mono">
