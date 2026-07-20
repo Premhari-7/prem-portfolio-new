@@ -54,7 +54,7 @@ I am a Full Stack Developer driven by curiosity and the urge to build functional
 | **Scent Bite** | Full-stack perfume shop management system with dynamic cart and checkout. | Full Stack Developer |
 | **Plant Disease Analyzer** | AI-powered disease prediction platform leveraging machine learning models. | AI Integration & Frontend |
 | **Smart Parking System** | Real-time parking slot booking application with live availability tracking. | Backend Architect |
-| **GUVI Auth System** | Scalable authentication system utilizing a dual-database architecture. | Full Stack Developer |
+| **Nihongo Learning Platform** | Interactive Japanese language learning platform. | Full Stack Developer |
 
 <br>
 
