@@ -13,6 +13,8 @@ import {
   generateOrganizationStructuredData,
 } from "@/lib/structured-data";
 
+import OfflineDetector from "@/components/common/OfflineDetector";
+
 export const metadata: Metadata = {
   applicationName: "Prem Hari Portfolio",
 
@@ -133,6 +135,7 @@ export default function RootLayout({
 
         {children}
 
+        <OfflineDetector />
         <Toaster position="bottom-right" richColors closeButton />
         <Analytics />
       </body>
