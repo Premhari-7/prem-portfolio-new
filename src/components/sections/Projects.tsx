@@ -37,21 +37,15 @@ export const Projects = () => {
         transition={{ duration: 0.6 }}
       >
         {projectsData.map((proj, index) => (
-          <motion.div
+          <ProjectCard
             key={`${proj.name}-${index}`}
-            initial={{ opacity: 0, y: 40 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: index * 0.1 }}
-          >
-            <ProjectCard
-              index={index}
-              title={proj.name}
-              desc={proj.description}
-              github={proj.github_link}
-              demo={proj.demo}
-              tech={proj.tech}
-            />
-          </motion.div>
+            index={index}
+            title={proj.name}
+            desc={proj.description}
+            github={proj.github_link}
+            demo={proj.demo}
+            tech={proj.tech}
+          />
         ))}
       </motion.div>
     </section>

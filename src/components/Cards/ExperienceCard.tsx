@@ -3,6 +3,7 @@ import { motion, useInView } from "framer-motion";
 
 import { Card } from "../ui/card";
 import { Badge } from "../ui/badge";
+import GlassSurface from "../ui/GlassSurface";
 
 interface ExperienceCardProps {
   role: string;
@@ -24,7 +25,7 @@ export const ExperienceCard: FC<ExperienceCardProps> = ({
   const ref = useRef(null);
 
   const isInView = useInView(ref, {
-    once: false,
+    once: true,
     margin: "-50px",
     amount: 0.2,
   });
@@ -33,20 +34,19 @@ export const ExperienceCard: FC<ExperienceCardProps> = ({
     <motion.div
       ref={ref}
       key={index}
-      initial={{ opacity: 0, x: -50, scale: 0.95 }}
+      initial={{ opacity: 0, x: -30 }}
       animate={
         isInView
-          ? { opacity: 1, x: 0, scale: 1 }
-          : { opacity: 0, x: -50, scale: 0.95 }
+          ? { opacity: 1, x: 0 }
+          : { opacity: 0, x: -30 }
       }
       transition={{
-        duration: 0.6,
+        duration: 0.5,
         delay: index * 0.1,
         ease: [0.25, 0.46, 0.45, 0.94],
       }}
       whileHover={{
-        scale: 1.02,
-        y: -8,
+        y: -5,
         transition: {
           duration: 0.3,
           type: "spring" as const,
@@ -69,10 +69,20 @@ export const ExperienceCard: FC<ExperienceCardProps> = ({
 
       {/* Content */}
       <motion.div className="flex-1">
-        <Card
-          className="relative overflow-hidden backdrop-blur-[40px] border transition-all duration-500 hover:shadow-2xl group-hover:shadow-luxury-hover-glow/20 rounded-3xl"
+        <GlassSurface
+          width="100%"
+          height="100%"
+          borderRadius={24}
+          displace={0.8}
+          distortionScale={-150}
+          redOffset={8}
+          greenOffset={-14}
+          blueOffset={25}
+          brightness={60}
+          opacity={0.8}
+          mixBlendMode="screen"
+          className="relative border transition-all duration-500 hover:shadow-2xl group-hover:shadow-luxury-hover-glow/20 rounded-3xl"
           style={{
-            background: "hsl(var(--glass-bg))",
             borderColor: "hsl(var(--glass-border))",
             boxShadow: "var(--glass-glow)",
           }}
@@ -87,12 +97,7 @@ export const ExperienceCard: FC<ExperienceCardProps> = ({
           />
 
           <div className="relative z-10 p-6">
-            <motion.div
-              className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4"
-              initial={{ opacity: 0, y: 10 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-              transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
-            >
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
               <div>
                 <h3
                   className="text-xl font-semibold font-nasalization mb-1"
@@ -113,63 +118,30 @@ export const ExperienceCard: FC<ExperienceCardProps> = ({
               >
                 {year}
               </span>
-            </motion.div>
+            </div>
 
-            <motion.ul
-              className="space-y-2"
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 + 0.4 }}
-            >
+            <ul className="space-y-2">
               {description.map((point, pointIndex) => (
-                <motion.li
+                <li
                   key={pointIndex}
                   className="text-xs font-inter flex items-start"
                   style={{ color: "hsl(var(--foreground) / 0.8)" }}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={
-                    isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }
-                  }
-                  transition={{
-                    duration: 0.4,
-                    delay: index * 0.1 + 0.5 + pointIndex * 0.1,
-                  }}
                 >
                   <span
                     className="w-1.5 h-1.5 rounded-full mt-2 mr-3 flex-shrink-0"
                     style={{ backgroundColor: "hsl(var(--accent))" }}
                   />
                   {point}
-                </motion.li>
+                </li>
               ))}
-            </motion.ul>
+            </ul>
 
-            <motion.div
-              className="flex flex-wrap gap-2 mt-6"
-              initial={{ opacity: 0, y: 10 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-              transition={{ duration: 0.5, delay: index * 0.1 + 0.6 }}
-            >
-              {technologies.map((tech, techIndex) => (
-                <motion.div
-                  key={techIndex}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={
-                    isInView
-                      ? { opacity: 1, scale: 1 }
-                      : { opacity: 0, scale: 0.8 }
-                  }
-                  transition={{
-                    duration: 0.3,
-                    delay: index * 0.1 + 0.5 + techIndex * 0.05,
-                    type: "spring" as const,
-                    stiffness: 300,
-                  }}
-                  whileHover={{ scale: 1.05 }}
-                >
+            <div className="flex flex-wrap gap-2 mt-6">
+              {technologies.map((tech) => (
+                <div key={tech}>
                   <Badge
                     variant="outline"
-                    className="text-xs transition-all duration-300 hover:shadow-md font-mono px-3 py-1"
+                    className="text-xs transition-all duration-300 hover:scale-105 hover:shadow-md font-mono px-3 py-1"
                     style={{
                       borderColor: "hsl(var(--primary) / 0.3)",
                       color: "hsl(var(--foreground) / 0.9)",
@@ -179,11 +151,11 @@ export const ExperienceCard: FC<ExperienceCardProps> = ({
                   >
                     {tech}
                   </Badge>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
           </div>
-        </Card>
+        </GlassSurface>
       </motion.div>
     </motion.div>
   );

@@ -14,6 +14,7 @@ import {
 } from "@/lib/structured-data";
 
 import OfflineDetector from "@/components/common/OfflineDetector";
+import SmoothScroll from "@/components/common/SmoothScroll";
 
 export const metadata: Metadata = {
   applicationName: "Prem Hari Portfolio",
@@ -133,11 +134,13 @@ export default function RootLayout({
           }}
         />
 
-        {children}
+        <SmoothScroll>
+          {children}
 
-        <OfflineDetector />
-        <Toaster position="bottom-right" richColors closeButton />
-        <Analytics />
+          <OfflineDetector />
+          <Toaster position="bottom-right" richColors closeButton />
+          <Analytics />
+        </SmoothScroll>
       </body>
     </html>
   );

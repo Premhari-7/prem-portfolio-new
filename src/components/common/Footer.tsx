@@ -10,6 +10,7 @@ import { LuGithub, LuLinkedin, LuMail } from "react-icons/lu"; // ❌ Twitter re
 import { quentine } from "@/app/fonts";
 import { selfData } from "@/constant/";
 import spaceImg from "@/assets/images/space.png";
+import GlassSurface from "../ui/GlassSurface";
 
 const floatingParticles = [
   { x: 200, y: 80, color: "hsl(var(--primary))", duration: 7, delay: 0 },
@@ -42,7 +43,21 @@ export const Footer = () => {
   ];
 
   return (
-    <footer className="relative bg-background/10 backdrop-blur-md border-t border-border/50 overflow-hidden">
+    <footer className="relative w-full mt-12">
+      <GlassSurface
+        width="100%"
+        height="100%"
+        borderRadius={0}
+        displace={0.5}
+        distortionScale={-100}
+        redOffset={5}
+        greenOffset={-10}
+        blueOffset={15}
+        brightness={55}
+        opacity={0.8}
+        mixBlendMode="screen"
+        className="relative bg-background/10 backdrop-blur-md border-t border-border/50"
+      >
       <div
         className="absolute inset-0 opacity-10"
         style={{
@@ -151,6 +166,7 @@ export const Footer = () => {
           }}
         />
       ))}
+      </GlassSurface>
     </footer>
   );
 };

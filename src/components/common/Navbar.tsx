@@ -10,6 +10,7 @@ import { RiMenu4Fill, RiCloseLargeFill } from "react-icons/ri";
 import { quentine } from "@/app/fonts";
 
 import { Button } from "../ui/button";
+import GlassSurface from "../ui/GlassSurface";
 import { createBlurDataURL } from "@/lib/BlurDataURL";
 import { selfData } from "@/constant";
 
@@ -53,12 +54,13 @@ export const Navbar = () => {
         isScrolled ? "pt-0 px-2 sm:px-4" : "px-2 sm:px-2"
       } ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
     >
-      <div
-        className={`floating-nav rounded-3xl px-4 sm:px-6 py-3 transition-all duration-300 max-w-7xl mx-auto ${
-          isScrolled ? "scale-[0.98]" : "scale-100"
-        }`}
+      <GlassSurface
+        width="100%"
+        height="100%"
+        borderRadius={24}
+        className="floating-nav px-4 sm:px-6 py-3 transition-all duration-300 max-w-7xl mx-auto"
       >
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between w-full">
           {/* Logo + Name */}
           <Link
             href="/"
@@ -158,7 +160,7 @@ export const Navbar = () => {
             </div>
           </div>
         </div>
-      </div>
+      </GlassSurface>
     </nav>
   );
 };

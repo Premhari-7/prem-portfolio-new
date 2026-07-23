@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 
 import { BsSend, BsSendCheck } from "react-icons/bs";
 import { Card } from "../ui/card";
+import GlassSurface from "../ui/GlassSurface";
 
 import { db } from "@/firebase";
 import { collection, addDoc } from "firebase/firestore";
@@ -115,13 +116,13 @@ export const ContactFormCard = () => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 60, scale: 0.9, rotateX: 15 }}
+      initial={{ opacity: 0, y: 60, rotateX: 15 }}
       whileInView={{
         opacity: 1,
         y: 0,
-        scale: 1,
         rotateX: 0,
       }}
+      viewport={{ once: true }}
       transition={{
         duration: 0.8,
         ease: [0.16, 1, 0.3, 1],
@@ -131,7 +132,6 @@ export const ContactFormCard = () => {
       }}
       whileHover={{
         y: -15,
-        scale: 1.03,
         rotateX: -2,
         rotateY: 2,
         transition: {
@@ -147,10 +147,20 @@ export const ContactFormCard = () => {
         perspective: "1000px",
       }}
     >
-      <Card
-        className="relative overflow-hidden backdrop-blur-[40px] border transition-all duration-700 h-full flex flex-col hover:shadow-2xl group-hover:shadow-luxury-hover-glow/40 rounded-3xl"
+      <GlassSurface
+        width="100%"
+        height="100%"
+        borderRadius={24}
+        displace={0.8}
+        distortionScale={-150}
+        redOffset={8}
+        greenOffset={-14}
+        blueOffset={25}
+        brightness={60}
+        opacity={0.8}
+        mixBlendMode="screen"
+        className="relative overflow-hidden border transition-all duration-700 h-full flex flex-col hover:shadow-2xl group-hover:shadow-luxury-hover-glow/40 rounded-3xl"
         style={{
-          background: "hsl(var(--glass-bg))",
           borderColor: "hsl(var(--glass-border))",
           boxShadow: "var(--glass-glow)",
           transformStyle: "preserve-3d",
@@ -218,19 +228,7 @@ export const ContactFormCard = () => {
         <div className="relative z-10 p-4 md:p-6 flex flex-col flex-grow">
           <form onSubmit={sendEmail} className="space-y-3">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <motion.div
-                initial={{ opacity: 0, x: -40, rotateY: -15 }}
-                whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-                transition={{
-                  duration: 0.7,
-                  delay: 0.3,
-                  type: "spring",
-                  stiffness: 120,
-                  damping: 15,
-                }}
-                whileHover={{ scale: 1.02, rotateY: 2 }}
-                whileFocus={{ scale: 1.02, rotateY: 2 }}
-              >
+              <div className="transition-transform duration-300 hover:scale-105 focus-within:scale-105">
                 <input
                   required
                   type="text"
@@ -245,21 +243,9 @@ export const ContactFormCard = () => {
                     borderColor: "hsl(var(--glass-border))",
                   }}
                 />
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, x: 40, rotateY: 15 }}
-                whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-                transition={{
-                  duration: 0.7,
-                  delay: 0.4,
-                  type: "spring",
-                  stiffness: 120,
-                  damping: 15,
-                }}
-                whileHover={{ scale: 1.02, rotateY: -2 }}
-                whileFocus={{ scale: 1.02, rotateY: -2 }}
-              >
+              <div className="transition-transform duration-300 hover:scale-105 focus-within:scale-105">
                 <input
                   required
                   type="email"
@@ -274,21 +260,10 @@ export const ContactFormCard = () => {
                     borderColor: "hsl(var(--glass-border))",
                   }}
                 />
-              </motion.div>
+              </div>
             </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30, scale: 0.95 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{
-                duration: 0.6,
-                delay: 0.5,
-                type: "spring",
-                stiffness: 150,
-                damping: 12,
-              }}
-              whileHover={{ scale: 1.02, y: -2 }}
-            >
+            <div className="transition-transform duration-300 hover:scale-105">
               <select
                 required
                 name="reasonToContact"
@@ -320,20 +295,9 @@ export const ContactFormCard = () => {
                   Feature Request
                 </option>
               </select>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30, scale: 0.95 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{
-                duration: 0.6,
-                delay: 0.6,
-                type: "spring",
-                stiffness: 150,
-                damping: 12,
-              }}
-              whileHover={{ scale: 1.02, y: -2 }}
-            >
+            <div className="transition-transform duration-300 hover:scale-105">
               <textarea
                 placeholder="Your Message"
                 rows={4}
@@ -348,19 +312,9 @@ export const ContactFormCard = () => {
                   borderColor: "hsl(var(--glass-border))",
                 }}
               />
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 40, scale: 0.9 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{
-                duration: 0.7,
-                delay: 0.7,
-                type: "spring",
-                stiffness: 130,
-                damping: 15,
-              }}
-            >
+            <div className="transition-transform duration-300">
               <motion.button
                 type="submit"
                 disabled={isSending}
@@ -443,10 +397,10 @@ export const ContactFormCard = () => {
                   </>
                 )}
               </motion.button>
-            </motion.div>
+            </div>
           </form>
         </div>
-      </Card>
+      </GlassSurface>
     </motion.div>
   );
 };

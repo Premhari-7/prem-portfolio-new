@@ -10,6 +10,7 @@ import { IoLocationOutline, IoMailOutline } from "react-icons/io5";
 import { selfData } from "@/constant";
 import { nasalization } from "@/app/fonts";
 import { ContactFormCard, ContactSocials } from "@/components/Cards";
+import GlassSurface from "@/components/ui/GlassSurface";
 
 export const Contact = () => {
   const ref = useRef(null);
@@ -98,26 +99,33 @@ const ContactItem: React.FC<ContactItemProps> = ({
     <motion.div
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
-      className="p-4 rounded-xl transition-all duration-300 hover:bg-white/5 group cursor-pointer border border-transparent hover:border-primary/20"
+      className="group cursor-pointer"
     >
-      <div className="flex items-center space-x-4">
-        <motion.div
-          className="p-3 rounded-lg"
-          style={{ backgroundColor: "hsl(var(--primary) / 0.2)" }}
-          whileHover={{
-            scale: 1.1,
-            transition: { type: "spring", stiffness: 400, damping: 10 },
-          }}
-        >
-          <Icon className="w-6 h-6" style={{ color: "hsl(var(--primary))" }} />
-        </motion.div>
-        <div className="flex-1">
-          <p className="text-sm text-foreground/60 mb-1">{label}</p>
-          <p className="font-medium group-hover:text-primary transition-colors duration-300">
-            {value}
-          </p>
+      <GlassSurface
+        width="100%"
+        height="auto"
+        borderRadius={16}
+        className="p-4 transition-all duration-300 border border-transparent hover:border-primary/20"
+      >
+        <div className="flex items-center space-x-4">
+          <motion.div
+            className="p-3 rounded-lg"
+            style={{ backgroundColor: "hsl(var(--primary) / 0.2)" }}
+            whileHover={{
+              scale: 1.1,
+              transition: { type: "spring", stiffness: 400, damping: 10 },
+            }}
+          >
+            <Icon className="w-6 h-6" style={{ color: "hsl(var(--primary))" }} />
+          </motion.div>
+          <div className="flex-1">
+            <p className="text-sm text-foreground/60 mb-1">{label}</p>
+            <p className="font-medium group-hover:text-primary transition-colors duration-300">
+              {value}
+            </p>
+          </div>
         </div>
-      </div>
+      </GlassSurface>
     </motion.div>
   );
 

@@ -4,9 +4,10 @@ import { motion } from "motion/react";
 
 import { SiLeetcode } from "react-icons/si";
 import { PiTelegramLogo } from "react-icons/pi";
-import { FaGithub, FaLinkedinIn,  } from "react-icons/fa6";
+import { FaGithub, FaLinkedinIn } from "react-icons/fa6";
 
 import { selfData } from "@/constant";
+import GlassSurface from "@/components/ui/GlassSurface";
 
 export const ContactSocials = () => {
   const socialLinks = [
@@ -59,6 +60,7 @@ const ContactSocialItem = ({
   return (
     <motion.li
       whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
       initial={{ opacity: 0, y: initial }}
       transition={{
         duration: 0.5,
@@ -67,9 +69,9 @@ const ContactSocialItem = ({
         damping: 10,
       }}
       whileHover={{
-        scale: 1.1,
+        y: -4,
       }}
-      className="bg-purple-700 text-slate-300 hover:bg-slate-400 hover:text-purple-700 h-10 w-10 rounded-full flex items-center justify-center shrink-0"
+      className="shrink-0"
     >
       <Link
         href={link}
@@ -77,7 +79,14 @@ const ContactSocialItem = ({
         rel="noopener noreferrer"
         className="flex items-center"
       >
-        <Icon className="text-slate-300 hover:text-purple-700 w-6 h-6" />
+        <GlassSurface
+          width={40}
+          height={40}
+          borderRadius={20}
+          className="flex items-center justify-center bg-purple-700/80 hover:bg-slate-400 text-slate-300 hover:text-purple-700 transition-colors"
+        >
+          <Icon className="w-5 h-5" />
+        </GlassSurface>
       </Link>
     </motion.li>
   );
