@@ -60,11 +60,7 @@ const LightPillar: React.FC<LightPillarProps> = ({
     const width = container.clientWidth;
     const height = container.clientHeight;
 
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    const isLowEndDevice = isMobile || (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4);
-
     let effectiveQuality = quality;
-    if (isLowEndDevice && quality === 'high') effectiveQuality = 'medium';
 
     const qualitySettings = {
       low: { iterations: 24, waveIterations: 1, pixelRatio: 0.5, precision: 'mediump', stepMultiplier: 1.5 },
@@ -314,28 +310,26 @@ const LightPillar: React.FC<LightPillarProps> = ({
       container.addEventListener('mousemove', handleMouseMove, { passive: true });
     }
 
-    // Animation loop with fixed timestep
     let lastTime = performance.now();
-    const targetFPS = effectiveQuality === 'low' ? 30 : 60;
-    const frameTime = 1000 / targetFPS;
 
     const animate = (currentTime: number) => {
       if (!materialRef.current || !rendererRef.current || !sceneRef.current || !cameraRef.current) return;
 
       const deltaTime = currentTime - lastTime;
+      lastTime = currentTime;
 
-      if (deltaTime >= frameTime) {
-        timeRef.current += 0.016 * rotationSpeedRef.current;
-        materialRef.current.uniforms.uTime.value = timeRef.current;
+      // Advance time smoothly based on actual elapsed time (cap delta to avoid huge jumps if tab was inactive)
+      const safeDelta = Math.min(deltaTime, 50); 
+      timeRef.current += (safeDelta / 1000) * rotationSpeedRef.current;
+      
+      materialRef.current.uniforms.uTime.value = timeRef.current;
 
-        // Pre-compute rotation on CPU
-        const rotAngle = timeRef.current * 0.3;
-        materialRef.current.uniforms.uRotCos.value = Math.cos(rotAngle);
-        materialRef.current.uniforms.uRotSin.value = Math.sin(rotAngle);
+      // Pre-compute rotation on CPU
+      const rotAngle = timeRef.current * 0.3;
+      materialRef.current.uniforms.uRotCos.value = Math.cos(rotAngle);
+      materialRef.current.uniforms.uRotSin.value = Math.sin(rotAngle);
 
-        rendererRef.current.render(sceneRef.current, cameraRef.current);
-        lastTime = currentTime - (deltaTime % frameTime);
-      }
+      rendererRef.current.render(sceneRef.current, cameraRef.current);
 
       rafRef.current = requestAnimationFrame(animate);
     };

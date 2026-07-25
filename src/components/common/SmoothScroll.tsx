@@ -11,13 +11,20 @@ export default function SmoothScroll({
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
+    // On mobile screens and touch devices, native GPU touch scrolling is infinitely smoother and 0-lag
+    const isMobile =
+      typeof window !== "undefined" &&
+      (window.innerWidth <= 768 || window.matchMedia("(pointer: coarse)").matches);
+
+    if (isMobile) return;
+
     const lenis = new Lenis({
-      duration: 1.4,
+      duration: 0.8,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      touchMultiplier: 1.5,
+      touchMultiplier: 1.0,
       infinite: false,
       autoResize: true,
     });

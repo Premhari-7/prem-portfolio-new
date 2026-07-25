@@ -51,9 +51,9 @@ export const projectsData = [
   {
     name: "Plant Disease Analyzer",
     description:
-      "AI-based plant disease detection system trained on 10,000+ images from PlantVillage dataset with chatbot integration using Groq AI.",
+      "Built an intelligent crop disease diagnosis platform using a convolutional neural network (CNN) trained on 10,000+ PlantVillage dataset images. The system classifies plant diseases with high accuracy and provides detailed disease information, preventive measures, and treatment recommendations through an integrated Groq AI chatbot. Features include image upload, real-time prediction, and AI-assisted farming support.",
     github_link: "https://github.com/Premhari-7/plant-disease-analyzer-ai",
-    tech: ["Python", "Machine Learning", "AI", "Groq API"],
+    tech: ["Python","Tensor Flow", "Machine Learning", "AI", "Groq API"],
   },
 
   {
@@ -67,7 +67,7 @@ export const projectsData = [
     "Node.js",
     "Express.js",
     "MongoDB Atlas",
-    "Railway",
+    "Render",
     "TypeScript",
     "JWT Authentication",
     "Groq AI"

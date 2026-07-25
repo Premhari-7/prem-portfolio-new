@@ -18,7 +18,7 @@ export const Projects = () => {
     <section
       ref={ref}
       id="projects"
-      className="relative w-full max-w-6xl mx-auto px-4 py-32"
+      className="relative w-full max-w-6xl mx-auto px-4 py-24 sm:py-32"
     >
       {/* 🔥 FIXED TITLE (FORCE ABOVE BACKGROUND) */}
       <div className="relative z-[999] text-center mb-16">

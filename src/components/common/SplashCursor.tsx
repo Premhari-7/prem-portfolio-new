@@ -1234,12 +1234,19 @@ export default function SplashCursor({
     }
     document.body.addEventListener('mousemove', handleFirstMouseMove);
 
+    let mouseMoveRaf: number | null = null;
     window.addEventListener('mousemove', e => {
-      const pointer = pointers[0];
-      const posX = scaleByPixelRatio(e.clientX);
-      const posY = scaleByPixelRatio(e.clientY);
-      const color = pointer.color;
-      updatePointerMoveData(pointer, posX, posY, color);
+      if (mouseMoveRaf !== null) return;
+      const clientX = e.clientX;
+      const clientY = e.clientY;
+      mouseMoveRaf = requestAnimationFrame(() => {
+        const pointer = pointers[0];
+        const posX = scaleByPixelRatio(clientX);
+        const posY = scaleByPixelRatio(clientY);
+        const color = pointer.color;
+        updatePointerMoveData(pointer, posX, posY, color);
+        mouseMoveRaf = null;
+      });
     });
 
     function handleFirstTouchStart(e: TouchEvent) {
@@ -1311,7 +1318,7 @@ export default function SplashCursor({
 
   return (
     <div className="fixed top-0 left-0 z-[1] pointer-events-none w-full h-full">
-      <canvas ref={canvasRef} id="fluid" className="w-screen h-screen block"></canvas>
+      <canvas ref={canvasRef} id="fluid" className="w-full h-full block"></canvas>
     </div>
   );
 }

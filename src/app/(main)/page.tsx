@@ -11,7 +11,7 @@ import {
   Projects,
   Contact,
 } from "@/components/sections";
-import { PreLoader, Background } from "@/components/common";
+import { PreLoader } from "@/components/common";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -24,8 +24,7 @@ export default function Home() {
   if (loading) return <PreLoader />;
 
   return (
-    <div className="min-h-screen relative">
-      <Background />
+    <div className="min-h-screen relative bg-transparent">
         <Navbar />
         <Hero />
         <About />

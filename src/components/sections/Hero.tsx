@@ -6,6 +6,7 @@ import { useRef } from "react";
 
 import { Button } from "@/components/ui/button";
 import { selfData } from "@/constant";
+import GlareHover from "@/components/ui/GlareHover";
 
 import { quentine, mono } from "@/app/fonts";
 
@@ -68,7 +69,7 @@ export const Hero = () => {
           </div>
 
           <motion.div
-            className="flex flex-col sm:flex-row gap-4"
+            className="flex flex-col sm:flex-row gap-4 items-start"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.8 }}
@@ -80,22 +81,17 @@ export const Hero = () => {
               }}
               whileTap={{ scale: 0.95 }}
             >
-              <Button
-                asChild
-                size="lg"
-                className="relative group overflow-hidden btn-primary shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                <Link href="/resume">
-                  <motion.div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-30"
-                    style={{ background: "var(--glass-shimmer)" }}
-                    initial={{ x: "-100%" }}
-                    whileHover={{ x: "100%" }}
-                    transition={{ duration: 0.6, ease: "easeInOut" }}
-                  />
-                  <span className="relative z-10 font-medium">View Resume</span>
-                </Link>
-              </Button>
+              <GlareHover width="auto" height="auto" borderRadius="0.5rem">
+                <Button
+                  asChild
+                  size="lg"
+                  className="relative group overflow-hidden btn-primary shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  <Link href="/resume">
+                    <span className="relative z-10 font-medium">View Resume</span>
+                  </Link>
+                </Button>
+              </GlareHover>
             </motion.div>
           </motion.div>
         </motion.div>

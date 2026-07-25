@@ -3,8 +3,10 @@ import { toast } from "sonner";
 import { useState, useEffect } from "react";
 
 import { BsSend, BsSendCheck } from "react-icons/bs";
+import { LuSend } from "react-icons/lu";
 import { Card } from "../ui/card";
-import GlassSurface from "../ui/GlassSurface";
+import GlareHover from "@/components/ui/GlareHover";
+
 
 import { db } from "@/firebase";
 import { collection, addDoc } from "firebase/firestore";
@@ -147,19 +149,8 @@ export const ContactFormCard = () => {
         perspective: "1000px",
       }}
     >
-      <GlassSurface
-        width="100%"
-        height="100%"
-        borderRadius={24}
-        displace={0.8}
-        distortionScale={-150}
-        redOffset={8}
-        greenOffset={-14}
-        blueOffset={25}
-        brightness={60}
-        opacity={0.8}
-        mixBlendMode="screen"
-        className="relative overflow-hidden border transition-all duration-700 h-full flex flex-col hover:shadow-2xl group-hover:shadow-luxury-hover-glow/40 rounded-3xl"
+      <div
+        className="relative overflow-hidden border transition-all duration-700 h-full flex flex-col hover:shadow-2xl group-hover:shadow-luxury-hover-glow/40 rounded-3xl bg-black/40 backdrop-blur-md"
         style={{
           borderColor: "hsl(var(--glass-border))",
           boxShadow: "var(--glass-glow)",
@@ -178,57 +169,12 @@ export const ContactFormCard = () => {
           transition={{ duration: 1.2, ease: "easeInOut" }}
         />
 
-        {/* Enhanced Glowing border effect */}
-        <motion.div
-          className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-          style={{
-            background:
-              "linear-gradient(45deg, hsl(var(--primary) / 0.3), hsl(var(--secondary) / 0.2), hsl(var(--primary) / 0.3))",
-            filter: "blur(2px)",
-          }}
-          animate={{
-            backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
 
-        {/* Floating particles effect */}
-        <motion.div
-          className="absolute top-4 right-4 w-2 h-2 rounded-full bg-primary/30 blur-sm"
-          animate={{
-            y: [0, -10, 0],
-            opacity: [0.3, 0.8, 0.3],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 2.5,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute bottom-6 left-6 w-1 h-1 rounded-full bg-secondary/40 blur-sm"
-          animate={{
-            y: [0, 8, 0],
-            x: [0, 5, 0],
-            opacity: [0.4, 0.9, 0.4],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 0.5,
-          }}
-        />
 
         <div className="relative z-10 p-4 md:p-6 flex flex-col flex-grow">
           <form onSubmit={sendEmail} className="space-y-3">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <div className="transition-transform duration-300 hover:scale-105 focus-within:scale-105">
+              <div>
                 <input
                   required
                   type="text"
@@ -236,16 +182,16 @@ export const ContactFormCard = () => {
                   name="senderName"
                   onChange={handleChange}
                   value={formValues.senderName}
-                  className="w-full px-4 py-3 text-sm rounded-xl backdrop-blur-xl border transition-all duration-300 outline-none focus:ring-2 focus:ring-primary/50 hover:border-primary/30"
+                  className="w-full px-4 py-3 text-sm rounded-xl border transition-all duration-300 outline-none focus:ring-2 focus:ring-primary/50 hover:border-primary/30"
                   style={{
                     color: "hsl(var(--foreground))",
-                    background: "hsl(var(--glass-bg))",
+                    background: "hsl(var(--glass-bg-light))",
                     borderColor: "hsl(var(--glass-border))",
                   }}
                 />
               </div>
 
-              <div className="transition-transform duration-300 hover:scale-105 focus-within:scale-105">
+              <div>
                 <input
                   required
                   type="email"
@@ -253,26 +199,26 @@ export const ContactFormCard = () => {
                   name="senderEmail"
                   onChange={handleChange}
                   value={formValues.senderEmail}
-                  className="w-full px-4 py-3 text-sm rounded-xl backdrop-blur-xl border transition-all duration-300 outline-none focus:ring-2 focus:ring-primary/50 hover:border-primary/30"
+                  className="w-full px-4 py-3 text-sm rounded-xl border transition-all duration-300 outline-none focus:ring-2 focus:ring-primary/50 hover:border-primary/30"
                   style={{
                     color: "hsl(var(--foreground))",
-                    background: "hsl(var(--glass-bg))",
+                    background: "hsl(var(--glass-bg-light))",
                     borderColor: "hsl(var(--glass-border))",
                   }}
                 />
               </div>
             </div>
 
-            <div className="transition-transform duration-300 hover:scale-105">
+            <div>
               <select
                 required
                 name="reasonToContact"
                 onChange={handleChange}
                 value={formValues.reasonToContact}
-                className="w-full px-4 py-3 text-sm rounded-xl backdrop-blur-xl border transition-all duration-300 outline-none focus:ring-2 focus:ring-primary/50 hover:border-primary/30"
+                className="w-full px-4 py-3 text-sm rounded-xl border transition-all duration-300 outline-none focus:ring-2 focus:ring-primary/50 hover:border-primary/30"
                 style={{
                   color: "hsl(var(--foreground))",
-                  background: "hsl(var(--glass-bg))",
+                  background: "hsl(var(--glass-bg-light))",
                   borderColor: "hsl(var(--glass-border))",
                 }}
               >
@@ -297,7 +243,7 @@ export const ContactFormCard = () => {
               </select>
             </div>
 
-            <div className="transition-transform duration-300 hover:scale-105">
+            <div>
               <textarea
                 placeholder="Your Message"
                 rows={4}
@@ -305,102 +251,71 @@ export const ContactFormCard = () => {
                 onChange={handleChange}
                 value={formValues.senderMsg}
                 required
-                className="w-full px-4 py-3 text-sm rounded-xl backdrop-blur-xl border transition-all duration-300 outline-none focus:ring-2 focus:ring-primary/50 hover:border-primary/30 resize-none"
+                className="w-full px-4 py-3 text-sm rounded-xl border transition-all duration-300 outline-none focus:ring-2 focus:ring-primary/50 hover:border-primary/30 resize-none"
                 style={{
                   color: "hsl(var(--foreground))",
-                  background: "hsl(var(--glass-bg))",
+                  background: "hsl(var(--glass-bg-light))",
                   borderColor: "hsl(var(--glass-border))",
                 }}
               />
             </div>
 
-            <div className="transition-transform duration-300">
-              <motion.button
-                type="submit"
-                disabled={isSending}
-                whileHover={{
-                  scale: 1.05,
-                  y: -3,
-                  transition: {
-                    duration: 0.2,
-                    type: "spring",
-                    stiffness: 400,
-                    damping: 10,
-                  },
-                }}
-                whileTap={{
-                  scale: 0.95,
-                  y: 1,
-                  transition: { duration: 0.1 },
-                }}
-                animate={{
-                  boxShadow: isSending
-                    ? "0 0 30px hsl(var(--primary) / 0.4)"
-                    : "0 0 20px hsl(var(--primary) / 0.2)",
-                }}
-                className="w-full btn-primary px-6 py-3 rounded-xl font-medium text-base flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden"
-              >
-                {isSending ? (
-                  <>
-                    <motion.div
-                      animate={{ rotate: 360 }}
-                      transition={{
-                        duration: 0.8,
-                        repeat: Infinity,
-                        ease: "linear",
-                      }}
-                      className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
-                    />
-                    <motion.span
-                      animate={{ opacity: [1, 0.5, 1] }}
-                      transition={{
-                        duration: 1.5,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                    >
-                      Sending...
-                    </motion.span>
-                  </>
-                ) : isSent ? (
-                  <>
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 300,
-                        damping: 10,
-                      }}
-                    >
-                      <BsSendCheck className="w-5 h-5" />
-                    </motion.div>
-                    <motion.span
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.2 }}
-                    >
-                      Sent!
-                    </motion.span>
-                  </>
-                ) : (
-                  <>
-                    <motion.div
-                      whileHover={{
-                        rotate: [0, -10, 10, 0],
-                        transition: { duration: 0.4 },
-                      }}
-                    >
-                      <BsSend className="w-5 h-5" />
-                    </motion.div>
-                    Send Message
-                  </>
-                )}
-              </motion.button>
+            <div>
+              <GlareHover width="100%" height="auto" borderRadius="0.75rem">
+                <button
+                  type="submit"
+                  disabled={isSending}
+                  className="w-full btn-primary px-6 py-3 rounded-xl font-medium text-base flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden transition-all duration-200 hover:shadow-lg"
+                >
+                  {isSending ? (
+                    <>
+                      <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{
+                          duration: 0.8,
+                          repeat: Infinity,
+                          ease: "linear",
+                        }}
+                        className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
+                      />
+                      <motion.span
+                        animate={{ opacity: [1, 0.5, 1] }}
+                        transition={{
+                          duration: 1.5,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
+                      >
+                        Sending...
+                      </motion.span>
+                    </>
+                  ) : isSent ? (
+                    <>
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 300,
+                          damping: 10,
+                        }}
+                      >
+                        <BsSendCheck className="w-5 h-5" />
+                      </motion.div>
+                      Message Sent!
+                    </>
+                  ) : (
+                    <>
+                      <LuSend className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                      Send Message
+                    </>
+                  )}
+                </button>
+              </GlareHover>
             </div>
           </form>
         </div>
-      </GlassSurface>
+      </div>
     </motion.div>
   );
 };

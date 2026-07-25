@@ -18,7 +18,7 @@ export function Experience() {
     <section
       ref={ref}
       id="experience"
-      className="py-24 max-w-6xl mx-auto relative overflow-hidden"
+      className="py-24 max-w-6xl mx-auto relative"
     >
       {/* Background decoration */}
 

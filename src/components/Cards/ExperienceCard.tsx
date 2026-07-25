@@ -3,7 +3,7 @@ import { motion, useInView } from "framer-motion";
 
 import { Card } from "../ui/card";
 import { Badge } from "../ui/badge";
-import GlassSurface from "../ui/GlassSurface";
+
 
 interface ExperienceCardProps {
   role: string;
@@ -35,24 +35,11 @@ export const ExperienceCard: FC<ExperienceCardProps> = ({
       ref={ref}
       key={index}
       initial={{ opacity: 0, x: -30 }}
-      animate={
-        isInView
-          ? { opacity: 1, x: 0 }
-          : { opacity: 0, x: -30 }
-      }
+      animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -20 }}
       transition={{
         duration: 0.5,
         delay: index * 0.1,
         ease: [0.25, 0.46, 0.45, 0.94],
-      }}
-      whileHover={{
-        y: -5,
-        transition: {
-          duration: 0.3,
-          type: "spring" as const,
-          stiffness: 400,
-          damping: 25,
-        },
       }}
       className="relative flex items-start space-x-8 group"
     >
@@ -69,31 +56,17 @@ export const ExperienceCard: FC<ExperienceCardProps> = ({
 
       {/* Content */}
       <motion.div className="flex-1">
-        <GlassSurface
-          width="100%"
-          height="100%"
-          borderRadius={24}
-          displace={0.8}
-          distortionScale={-150}
-          redOffset={8}
-          greenOffset={-14}
-          blueOffset={25}
-          brightness={60}
-          opacity={0.8}
-          mixBlendMode="screen"
-          className="relative border transition-all duration-500 hover:shadow-2xl group-hover:shadow-luxury-hover-glow/20 rounded-3xl"
+        <div
+          className="relative border transition-all duration-500 hover:shadow-2xl group-hover:shadow-luxury-hover-glow/20 rounded-3xl bg-black/40 backdrop-blur-md"
           style={{
             borderColor: "hsl(var(--glass-border))",
             boxShadow: "var(--glass-glow)",
           }}
         >
           {/* Glass shimmer effect */}
-          <motion.div
-            className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500"
+          <div
+            className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none"
             style={{ background: "var(--shimmer)" }}
-            initial={{ x: "-100%" }}
-            whileHover={{ x: "200%" }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
           />
 
           <div className="relative z-10 p-6">
@@ -155,7 +128,7 @@ export const ExperienceCard: FC<ExperienceCardProps> = ({
               ))}
             </div>
           </div>
-        </GlassSurface>
+        </div>
       </motion.div>
     </motion.div>
   );

@@ -4,7 +4,7 @@ import { nasalization } from "@/app/fonts";
 import { selfData } from "@/constant";
 import { motion, AnimatePresence } from "framer-motion";
 import { FC, useState, useEffect } from "react";
-import { Background } from "./Background";
+
 
 interface H1ComponentProps {
   name: string;
@@ -45,9 +45,7 @@ export const PreLoader = () => {
           exit={{ opacity: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
         >
-          <div className="flex items-center justify-center fixed h-full w-full">
-            <Background />
-
+          <div className="flex items-center justify-center fixed h-full w-full bg-transparent">
             <motion.div
               className="flex justify-center items-center tracking-widest mx-auto container text-2xl text-slate-400"
               initial={{ opacity: 1 }}

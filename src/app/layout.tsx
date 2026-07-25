@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 
 import { Analytics } from "@vercel/analytics/next";
 import { Toaster } from "sonner";
+import SmoothScroll from "@/components/common/SmoothScroll";
+import SplashCursor from "@/components/common/SplashCursor";
 
 import { inter, mono, nasalization, quentine } from "./fonts";
 
@@ -14,7 +16,8 @@ import {
 } from "@/lib/structured-data";
 
 import OfflineDetector from "@/components/common/OfflineDetector";
-import SmoothScroll from "@/components/common/SmoothScroll";
+import GlobalGlassFilters from "@/components/ui/GlobalGlassFilters";
+import { Background } from "@/components/common";
 
 export const metadata: Metadata = {
   applicationName: "Prem Hari Portfolio",
@@ -134,13 +137,30 @@ export default function RootLayout({
           }}
         />
 
+        <Background />
+        <SplashCursor
+          DENSITY_DISSIPATION={3.5}
+          VELOCITY_DISSIPATION={2}
+          PRESSURE={0.1}
+          CURL={3}
+          SPLAT_RADIUS={0.1}
+          SPLAT_FORCE={4000}
+          DYE_RESOLUTION={256}
+          SIM_RESOLUTION={32}
+          COLOR_UPDATE_SPEED={10}
+          SHADING={false}
+          RAINBOW_MODE={false}
+          COLOR="#b84177"
+        />
+
         <SmoothScroll>
+          <GlobalGlassFilters />
           {children}
+        </SmoothScroll>
 
           <OfflineDetector />
           <Toaster position="bottom-right" richColors closeButton />
           <Analytics />
-        </SmoothScroll>
       </body>
     </html>
   );

@@ -7,10 +7,11 @@ import { motion } from "framer-motion";
 import { TbHeart, TbHeartFilled } from "react-icons/tb";
 import { LuGithub, LuLinkedin, LuMail } from "react-icons/lu"; // ❌ Twitter removed
 
-import { quentine } from "@/app/fonts";
+import { quentine, nasalization } from "@/app/fonts";
 import { selfData } from "@/constant/";
 import spaceImg from "@/assets/images/space.png";
-import GlassSurface from "../ui/GlassSurface";
+import GlassSurface from "@/components/ui/GlassSurface";
+
 
 const floatingParticles = [
   { x: 200, y: 80, color: "hsl(var(--primary))", duration: 7, delay: 0 },
@@ -43,20 +44,20 @@ export const Footer = () => {
   ];
 
   return (
-    <footer className="relative w-full mt-12">
+    <footer className="relative w-full mt-12 rounded-t-[24px] overflow-hidden border-t border-x border-white/10 shadow-[0_-8px_30px_-12px_rgba(255,255,255,0.1)]">
       <GlassSurface
         width="100%"
-        height="100%"
+        height="auto"
         borderRadius={0}
         displace={0.5}
-        distortionScale={-100}
-        redOffset={5}
-        greenOffset={-10}
-        blueOffset={15}
-        brightness={55}
-        opacity={0.8}
+        distortionScale={-180}
+        redOffset={0}
+        greenOffset={10}
+        blueOffset={20}
+        brightness={50}
+        opacity={0.93}
         mixBlendMode="screen"
-        className="relative bg-background/10 backdrop-blur-md border-t border-border/50"
+        className="relative w-full"
       >
       <div
         className="absolute inset-0 opacity-10"
@@ -130,7 +131,7 @@ export const Footer = () => {
 
         <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent my-2" />
 
-        <div className="text-[10px] sm:text-xs text-center text-muted-foreground space-y-1">
+        <div className={`text-[10px] sm:text-xs text-center text-muted-foreground space-y-1 ${nasalization.className}`}>
           <p className="flex items-center justify-center gap-1.5">
             Made with
             <button onClick={toggleHeart} className="text-primary">

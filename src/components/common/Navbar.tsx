@@ -1,165 +1,160 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 
-import { RiMenu4Fill, RiCloseLargeFill } from "react-icons/ri";
-
-import { quentine } from "@/app/fonts";
-
-import { Button } from "../ui/button";
 import GlassSurface from "../ui/GlassSurface";
+import { quentine } from "@/app/fonts";
+import { Button } from "../ui/button";
 import { createBlurDataURL } from "@/lib/BlurDataURL";
 import { selfData } from "@/constant";
 
 export const Navbar = () => {
-  const [isVisible, setIsVisible] = useState(true);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const lastScrollY = useRef(0);
   const pathname = usePathname();
   const isResumePage = pathname === "/resume";
+  const [isOpen, setIsOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      if (currentScrollY > 100 && !isScrolled) {
-        setIsScrolled(true);
-      } else if (currentScrollY <= 100 && isScrolled) {
-        setIsScrolled(false);
+      const currentY = window.scrollY;
+      if (currentY > lastScrollY && currentY > 80) {
+        // Scrolling down & past 80px — hide
+        setHidden(true);
+        setIsOpen(false);
+      } else {
+        // Scrolling up — show
+        setHidden(false);
       }
-
-      if (currentScrollY < lastScrollY.current || currentScrollY < 100) {
-        if (!isVisible) setIsVisible(true);
-      } else if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
-        if (isVisible) {
-          setIsVisible(false);
-          setIsMenuOpen(false);
-        }
-      }
-
-      lastScrollY.current = currentScrollY;
+      setLastScrollY(currentY);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isScrolled, isVisible]);
+  }, [lastScrollY]);
 
   return (
-    <nav
-      className={`fixed top-4 left-0 right-0 z-50 transition-all duration-300 ease-out ${
-        isScrolled ? "pt-0 px-2 sm:px-4" : "px-2 sm:px-2"
-      } ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
-    >
+    <nav className={`fixed top-0 left-0 w-full z-[999] overflow-visible px-6 transition-transform duration-300 ${hidden ? "-translate-y-full" : "translate-y-0"}`}>
       <GlassSurface
         width="100%"
-        height="100%"
-        borderRadius={24}
-        className="floating-nav px-4 sm:px-6 py-3 transition-all duration-300 max-w-7xl mx-auto"
+        height="auto"
+        borderRadius={16}
+        displace={0.5}
+        distortionScale={-180}
+        redOffset={0}
+        greenOffset={10}
+        blueOffset={20}
+        brightness={50}
+        opacity={0.93}
+        mixBlendMode="screen"
+        className={`flex flex-col w-full mt-3 transition-all duration-300
+                      ${isOpen ? "rounded-2xl" : "rounded-2xl"}
+                      md:flex-row md:items-center md:justify-between md:static md:w-full md:max-w-7xl md:mx-auto md:mt-6 md:rounded-xl`}
       >
-        <div className="flex items-center justify-between w-full">
-          {/* Logo + Name */}
-          <Link
-            href="/"
-            className="flex items-center space-x-2 sm:space-x-3 group"
-          >
-            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-glass-bg flex items-center justify-center group-hover:scale-105 transition-transform duration-200 overflow-hidden">
-              <Image
-                src="/images/logo.svg"
-                alt="logo"
-                width={56}
-                height={56}
-                placeholder="blur"
-                loading="lazy"
-                quality={100}
-                blurDataURL={`${createBlurDataURL({
-                  width: 56,
-                  height: 56,
-                })}`}
-                style={{ objectFit: "cover" }}
-              />
-            </div>
-
-            {/* ✅ Your Name from selfData */}
-            <span
-              className={`${quentine.className} text-foreground text-2xl sm:text-3xl font-bold`}
+        
+        <div className="flex flex-col w-full">
+          {/* Top row: Logo + Hamburger (mobile) / Logo + Resume (desktop) */}
+          <div className="flex items-center justify-between w-full px-4 py-3 md:px-8 md:py-4">
+            
+            {/* Logo + Name */}
+            <Link
+              href="/"
+              className="flex items-center gap-2 md:gap-3 group min-w-0 overflow-hidden"
+              onClick={() => setIsOpen(false)}
             >
-              {selfData.name}
-            </span>
-          </Link>
+              <div className="w-8 h-8 md:w-12 md:h-12 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform duration-200 overflow-hidden shrink-0">
+                <Image
+                  src="/images/logo.svg"
+                  alt="logo"
+                  width={48}
+                  height={48}
+                  placeholder="blur"
+                  loading="lazy"
+                  quality={100}
+                  blurDataURL={`${createBlurDataURL({
+                    width: 48,
+                    height: 48,
+                  })}`}
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
 
-          {/* Desktop Button */}
-          <div className="hidden sm:block">
-            <Button
-              variant="outline"
-              asChild
-              className="border-primary/30 hover:border-primary hover:bg-primary/10 transition-all duration-200"
+              <span
+                className={`${quentine.className} text-foreground text-lg md:text-3xl font-bold truncate drop-shadow-sm`}
+              >
+                {selfData.name}
+              </span>
+            </Link>
+
+            {/* Hamburger Icon - Mobile only */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="md:hidden flex flex-col justify-center items-center gap-[5px] w-8 h-8 shrink-0 ml-auto"
+              aria-label="Toggle menu"
             >
-              {isResumePage ? (
-                <a
-                  href="/docs/Prem Hari Full stack developer Resume.pdf"
-                  download="Prem_Hari_Full_Stack_Developer_Resume.pdf"
-                >
-                  Download Resume
-                </a>
-              ) : (
-                <Link href="/resume">Resume</Link>
-              )}
-            </Button>
-          </div>
+              <span className={`block w-5 h-[2px] bg-white/80 rounded-full transition-all duration-300 ${isOpen ? "rotate-45 translate-y-[7px]" : ""}`} />
+              <span className={`block w-5 h-[2px] bg-white/80 rounded-full transition-all duration-300 ${isOpen ? "opacity-0" : ""}`} />
+              <span className={`block w-5 h-[2px] bg-white/80 rounded-full transition-all duration-300 ${isOpen ? "-rotate-45 -translate-y-[7px]" : ""}`} />
+            </button>
 
-          {/* Mobile Toggle */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="sm:hidden p-2 rounded-lg hover:bg-muted/50 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50"
-            aria-label="Toggle mobile menu"
-          >
-            {isMenuOpen ? (
-              <RiCloseLargeFill size={20} />
-            ) : (
-              <RiMenu4Fill size={20} />
-            )}
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        <div
-          className={`sm:hidden overflow-hidden transition-all duration-300 ease-out ${
-            isMenuOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
-          }`}
-        >
-          <div className="pt-4 pb-2 border-t border-border/50 mt-4">
-            <div className="space-y-3">
+            {/* Resume Button - Desktop only */}
+            <div className="hidden md:flex md:ml-6 shrink-0">
               <Button
                 variant="outline"
+                size="sm"
                 asChild
-                className="w-full border-primary/30 hover:border-primary hover:bg-primary/10 transition-all duration-200"
+                className="group relative rounded-lg border-primary/30 hover:border-primary hover:bg-primary/10 hover:scale-105 hover:shadow-[0_0_15px_rgba(var(--primary),0.3)] transition-all duration-300 overflow-hidden text-sm px-6 py-2 h-auto"
               >
                 {isResumePage ? (
                   <a
                     href="/docs/Prem Hari Full stack developer Resume.pdf"
                     download="Prem_Hari_Full_Stack_Developer_Resume.pdf"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="flex items-center justify-center"
                   >
-                    Download Resume
+                    <div className="absolute top-0 -left-[150%] h-full w-2/3 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-[30deg] group-hover:left-[150%] transition-all duration-700 ease-in-out pointer-events-none" />
+                    <span className="relative z-10 pointer-events-none">Download</span>
                   </a>
                 ) : (
-                  <Link
-                    href="/resume"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="flex items-center justify-center"
+                  <Link href="/resume">
+                    <div className="absolute top-0 -left-[150%] h-full w-2/3 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-[30deg] group-hover:left-[150%] transition-all duration-700 ease-in-out pointer-events-none" />
+                    <span className="relative z-10 pointer-events-none">Resume</span>
+                  </Link>
+                )}
+              </Button>
+            </div>
+          </div>
+
+          {/* Expandable Menu - Mobile only */}
+          <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>
+            <div className="px-4 pb-3 pt-1 border-t border-white/10">
+              <Button
+                variant="outline"
+                size="sm"
+                asChild
+                className="w-full group relative rounded-xl border-primary/30 hover:border-primary hover:bg-primary/10 hover:scale-[1.02] active:scale-95 transition-all duration-200 overflow-hidden text-sm py-2 h-auto"
+                onClick={() => setIsOpen(false)}
+              >
+                {isResumePage ? (
+                  <a
+                    href="/docs/Prem Hari Full stack developer Resume.pdf"
+                    download="Prem_Hari_Full_Stack_Developer_Resume.pdf"
                   >
-                    Resume
+                    <div className="absolute top-0 -left-[150%] h-full w-2/3 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-[30deg] group-hover:left-[150%] transition-all duration-700 ease-in-out pointer-events-none" />
+                    <span className="relative z-10 pointer-events-none">Download Resume</span>
+                  </a>
+                ) : (
+                  <Link href="/resume">
+                    <div className="absolute top-0 -left-[150%] h-full w-2/3 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-[30deg] group-hover:left-[150%] transition-all duration-700 ease-in-out pointer-events-none" />
+                    <span className="relative z-10 pointer-events-none">View Resume</span>
                   </Link>
                 )}
               </Button>
             </div>
           </div>
         </div>
+
       </GlassSurface>
     </nav>
   );

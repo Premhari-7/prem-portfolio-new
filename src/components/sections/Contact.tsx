@@ -10,7 +10,7 @@ import { IoLocationOutline, IoMailOutline } from "react-icons/io5";
 import { selfData } from "@/constant";
 import { nasalization } from "@/app/fonts";
 import { ContactFormCard, ContactSocials } from "@/components/Cards";
-import GlassSurface from "@/components/ui/GlassSurface";
+
 
 export const Contact = () => {
   const ref = useRef(null);
@@ -19,12 +19,13 @@ export const Contact = () => {
     <section
       ref={ref}
       id="contact"
-      className="py-24 max-w-6xl mx-auto relative overflow-hidden"
+      className="py-24 max-w-6xl mx-auto relative"
     >
       <div className="px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="text-center mb-16"
         >
@@ -32,6 +33,7 @@ export const Contact = () => {
             className={`text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 relative ${nasalization.className}`}
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
             style={{ color: "hsl(var(--primary))" }}
           >
@@ -49,6 +51,7 @@ export const Contact = () => {
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.2 }}
               className="space-y-4"
             >
@@ -65,6 +68,7 @@ export const Contact = () => {
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.4 }}
             >
               <h3
@@ -101,11 +105,8 @@ const ContactItem: React.FC<ContactItemProps> = ({
       whileTap={{ scale: 0.98 }}
       className="group cursor-pointer"
     >
-      <GlassSurface
-        width="100%"
-        height="auto"
-        borderRadius={16}
-        className="p-4 transition-all duration-300 border border-transparent hover:border-primary/20"
+      <div
+        className="p-4 transition-all duration-300 border border-transparent hover:border-primary/20 bg-card/40 backdrop-blur-md rounded-2xl"
       >
         <div className="flex items-center space-x-4">
           <motion.div
@@ -125,7 +126,7 @@ const ContactItem: React.FC<ContactItemProps> = ({
             </p>
           </div>
         </div>
-      </GlassSurface>
+      </div>
     </motion.div>
   );
 

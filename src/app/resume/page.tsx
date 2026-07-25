@@ -2,9 +2,10 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Navbar, Footer, Background } from "@/components/common";
+import { Navbar, Footer } from "@/components/common";
 import { nasalization } from "@/app/fonts";
 import { PDFErrorBoundary } from "@/components/PDFErrorBoundary";
+import GlassSurface from "@/components/ui/GlassSurface";
 import {
   HiDownload,
   HiOutlineArrowsExpand,
@@ -97,8 +98,7 @@ export default function Resume() {
   };
 
   return (
-    <div className={`min-h-screen selection:bg-primary/20 ${nasalization.className}`}>
-      <Background />
+    <div className={`min-h-screen bg-transparent selection:bg-primary/20 ${nasalization.className}`}>
       <Navbar />
 
       <div className="container mx-auto px-4 pt-32 pb-20 flex flex-col min-h-screen">
@@ -120,64 +120,63 @@ export default function Resume() {
           <div className="flex flex-wrap justify-center gap-4">
             <motion.button
               onClick={toggleFullscreen}
-              className="group relative flex items-center gap-2 px-5 py-3 rounded-xl overflow-hidden transition-all duration-300 border border-secondary/30 bg-card/30 hover:bg-secondary/10"
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0 8px 25px hsl(var(--secondary) / 0.2)",
-              }}
+              className="group relative h-full rounded-xl overflow-hidden focus:outline-none"
+              whileHover={{ scale: 1.05, boxShadow: "0 8px 25px hsl(var(--secondary) / 0.2)" }}
               whileTap={{ scale: 0.95 }}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 1.1 }}
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
-                <HiOutlineArrowsExpand className="w-4 h-4 text-secondary relative z-10 pointer-events-none" />
-                <span className="text-foreground font-medium relative z-10 pointer-events-none">
-                  {isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
-                </span>
-              </motion.button>
+              <GlassSurface width="auto" height="auto" borderRadius={12} className="w-full h-full">
+                <div className="flex items-center gap-2 px-3 py-1 w-full h-full" style={{ color: "hsl(var(--foreground))" }}>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
+                  <HiOutlineArrowsExpand className="w-4 h-4 text-secondary relative z-10 pointer-events-none" />
+                  <span className="text-foreground font-medium relative z-10 pointer-events-none">
+                    {isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
+                  </span>
+                </div>
+              </GlassSurface>
+            </motion.button>
 
               <motion.a
                 href={PDF_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative flex items-center gap-2 px-5 py-3 rounded-xl overflow-hidden transition-all duration-300 border border-secondary/30 bg-card/30 hover:bg-secondary/10"
-                whileHover={{
-                  scale: 1.05,
-                  borderColor: "hsl(var(--secondary) / 0.5)",
-                }}
+                className="group relative h-full rounded-xl overflow-hidden block focus:outline-none"
+                whileHover={{ scale: 1.05, boxShadow: "0 8px 25px hsl(var(--secondary) / 0.2)" }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 1.2 }}
               >
-                <HiExternalLink className="w-4 h-4 text-secondary pointer-events-none" />
-                <span className="text-foreground font-medium pointer-events-none">
-                  Open in New Tab
-                </span>
+                <GlassSurface width="auto" height="auto" borderRadius={12} className="w-full h-full">
+                  <div className="flex items-center gap-2 px-3 py-1 w-full h-full" style={{ color: "hsl(var(--foreground))" }}>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
+                    <HiExternalLink className="w-4 h-4 text-secondary pointer-events-none" />
+                    <span className="text-foreground font-medium pointer-events-none">
+                      Open in New Tab
+                    </span>
+                  </div>
+                </GlassSurface>
               </motion.a>
 
               <motion.a
                 href={PDF_URL}
                 download="Prem_Hari_Full_Stack_Developer_Resume.pdf"
-                className="group relative flex items-center gap-2 px-6 py-3 rounded-xl overflow-hidden transition-all duration-300 font-medium text-primary-foreground"
-                style={{
-                  background:
-                    "linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.8) 100%)",
-                  boxShadow: "0 8px 25px hsl(var(--primary) / 0.3)",
-                }}
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 12px 35px hsl(var(--primary) / 0.4)",
-                }}
+                className="group relative h-full rounded-xl overflow-hidden block font-medium focus:outline-none"
+                whileHover={{ scale: 1.05, boxShadow: "0 8px 25px hsl(var(--primary) / 0.2)" }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 1.3 }}
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
-                <HiDownload className="w-4 h-4 relative z-10 pointer-events-none" />
-                <span className="relative z-10 pointer-events-none">Download PDF</span>
+                <GlassSurface width="auto" height="auto" borderRadius={12} className="w-full h-full">
+                  <div className="flex items-center gap-2 px-4 py-1 w-full h-full" style={{ color: "hsl(var(--foreground))" }}>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
+                    <HiDownload className="w-4 h-4 relative z-10 pointer-events-none" />
+                    <span className="relative z-10 pointer-events-none">Download PDF</span>
+                  </div>
+                </GlassSurface>
               </motion.a>
             </div>
           </motion.div>

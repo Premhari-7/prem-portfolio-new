@@ -40,10 +40,29 @@ export default function OfflineDetector() {
     };
   }, []);
 
+  useEffect(() => {
+    if (isOffline) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOffline]);
+
+  const handleTryAgain = () => {
+    if (navigator.onLine) {
+      window.location.reload();
+    } else {
+      setIsOffline(true);
+    }
+  };
+
   if (!isOffline) return null;
 
   return (
-    <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center p-4 text-center bg-background/80 backdrop-blur-md">
+    <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center p-4 text-center bg-background/98 backdrop-blur-3xl">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] max-w-[600px] max-h-[600px] bg-primary/20 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="relative z-10 p-8 rounded-3xl backdrop-blur-[40px] border flex flex-col items-center max-w-xl mx-auto"
@@ -72,8 +91,8 @@ export default function OfflineDetector() {
         </p>
 
         <button 
-          onClick={() => window.location.reload()}
-          className="px-8 py-3 rounded-xl font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-1 bg-gradient-to-r from-primary to-secondary text-primary-foreground font-mono"
+          onClick={handleTryAgain}
+          className="px-8 py-3 rounded-xl font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-1 bg-red-600 hover:bg-red-700 text-white font-mono"
         >
           Try Again
         </button>
