@@ -60,7 +60,7 @@ const LightPillar: React.FC<LightPillarProps> = ({
     const width = container.clientWidth;
     const height = container.clientHeight;
 
-    let effectiveQuality = quality;
+    const effectiveQuality = quality;
 
     const qualitySettings = {
       low: { iterations: 24, waveIterations: 1, pixelRatio: 0.5, precision: 'mediump', stepMultiplier: 1.5 },
@@ -383,6 +383,7 @@ const LightPillar: React.FC<LightPillarProps> = ({
       geometryRef.current = null;
       rafRef.current = null;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [webGLSupported, quality]);
 
   useEffect(() => {

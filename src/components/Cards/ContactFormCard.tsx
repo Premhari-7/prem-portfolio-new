@@ -2,9 +2,8 @@ import { motion } from "motion/react";
 import { toast } from "sonner";
 import { useState, useEffect } from "react";
 
-import { BsSend, BsSendCheck } from "react-icons/bs";
+import { BsSendCheck } from "react-icons/bs";
 import { LuSend } from "react-icons/lu";
-import { Card } from "../ui/card";
 import GlareHover from "@/components/ui/GlareHover";
 
 

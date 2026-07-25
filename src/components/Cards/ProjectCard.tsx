@@ -2,11 +2,9 @@ import Link from "next/link";
 import { FC, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-import { Card } from "../ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import GlareHover from "@/components/ui/GlareHover";
-import GlassSurface from "../ui/GlassSurface";
 import { FaGithub } from "react-icons/fa6";
 import { FiExternalLink } from "react-icons/fi";
 

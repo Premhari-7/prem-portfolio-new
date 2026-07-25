@@ -144,6 +144,7 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
     });
 
     gaussianBlurRef.current?.setAttribute('stdDeviation', displace.toString());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     width,
     height,
@@ -167,6 +168,7 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
     if (typeof window !== 'undefined') {
       setBackdropFilterSupported(CSS.supports('backdrop-filter', 'blur(10px)'));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -181,24 +183,12 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
     return () => {
       resizeObserver.disconnect();
     };
-  }, []);
-
-  useEffect(() => {
-    if (!containerRef.current) return;
-
-    const resizeObserver = new ResizeObserver(() => {
-      setTimeout(updateDisplacementMap, 0);
-    });
-
-    resizeObserver.observe(containerRef.current);
-
-    return () => {
-      resizeObserver.disconnect();
-    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     setTimeout(updateDisplacementMap, 0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [width, height]);
 
   const supportsSVGFilters = () => {
@@ -273,7 +263,7 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
   };
 
   const glassSurfaceClasses =
-    'relative flex items-center justify-center overflow-hidden transition-opacity duration-[260ms] ease-out';
+    'relative flex items-center justify-center overflow-hidden transition-opacity duration-300 ease-out';
 
   const focusVisibleClasses = isDarkMode
     ? 'focus-visible:outline-2 focus-visible:outline-[#0A84FF] focus-visible:outline-offset-2'
