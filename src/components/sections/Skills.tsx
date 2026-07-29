@@ -77,8 +77,6 @@ const Marquee: FC<MarqueeProps> = ({ skills, direction }) => {
 export const Skills = () => {
   return (
     <section id="skills" className="py-16 overflow-hidden relative">
-
-
       <div className="container mx-auto relative z-10">
         <div className="text-center mb-8">
           <motion.h2
@@ -91,7 +89,9 @@ export const Skills = () => {
             My Skills
           </motion.h2>
         </div>
+      </div>
 
+      <div className="w-full relative z-10">
         {(skillsData as SkillsDataProps[]).map((category, index) => {
           let direction: "left" | "right";
 
