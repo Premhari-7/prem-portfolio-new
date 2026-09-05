@@ -57,8 +57,8 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://prem-hari-portfolio.vercel.app"),
 
   verification: {
-  google: "tHEJii4n5zrbkXCgSqAMaXDhSt1VSxVe5SZ46mByYEg",
-},
+    google: "tHEJii4n5zrbkXCgSqAMaXDhSt1VSxVe5SZ46mByYEg",
+  },
 
   openGraph: {
     title: "prem hari s | full stack developer",
@@ -150,7 +150,7 @@ export default function RootLayout({
           COLOR_UPDATE_SPEED={10}
           SHADING={false}
           RAINBOW_MODE={false}
-          COLOR="#b84177"
+          COLOR="#3c3b3e"
         />
 
         <SmoothScroll>
@@ -158,9 +158,9 @@ export default function RootLayout({
           {children}
         </SmoothScroll>
 
-          <OfflineDetector />
-          <Toaster position="bottom-right" richColors closeButton />
-          <Analytics />
+        <OfflineDetector />
+        <Toaster position="bottom-right" richColors closeButton />
+        <Analytics />
       </body>
     </html>
   );
