@@ -81,16 +81,25 @@ uniform float uSwirl;
 uniform float uDispersion;
 uniform float uGlint;
 uniform float uTintAmount;
-uniform float uGrayscale;
+uniform float uObjectFit;
 
 const float TAU = 6.283185307179586;
 
 vec2 coverUV(vec2 uv) {
   vec2 safe = max(uTextureSize, vec2(1.0));
   vec2 s = uResolution / safe;
-  vec2 scaledSize = safe * max(s.x, s.y);
-  vec2 offset = (uResolution - scaledSize) * 0.5;
-  return (uv * uResolution - offset) / scaledSize;
+  
+  if (uResolution.x < uResolution.y) {
+    float scaleFactor = max(s.x * 1.1, s.y);
+    vec2 scaledSize = safe * scaleFactor;
+    vec2 offset = (uResolution - scaledSize) * vec2(0.35, 0.5);
+    return (uv * uResolution - offset) / scaledSize;
+  } else {
+    float scaleFactor = max(s.x, s.y);
+    vec2 scaledSize = safe * scaleFactor;
+    vec2 offset = (uResolution - scaledSize) * 0.5;
+    return (uv * uResolution - offset) / scaledSize;
+  }
 }
 
 void main() {
@@ -136,8 +145,11 @@ void main() {
 type RippleTrigger = 'hover' | 'click' | 'both';
 type RippleQuality = 'low' | 'medium' | 'high';
 
+export type ObjectFitMode = 'cover' | 'contain' | 'fit-width' | 'auto';
+
 export interface RippleDistortionProps {
   src?: string;
+  objectFit?: ObjectFitMode;
   brushSize?: number;
   strength?: number;
   swirl?: number;
@@ -192,6 +204,7 @@ interface CompositeUniforms {
   uGlint: { value: number };
   uTintAmount: { value: number };
   uGrayscale: { value: number };
+  uObjectFit: { value: number };
   [key: string]: { value: unknown };
 }
 
@@ -220,7 +233,8 @@ const hexToRGB = (hex: string): [number, number, number] => {
 };
 
 const RippleDistortion = ({
-  src = '/images/bg-ripple_3.jpg',
+  src = '/images/bg-2.png',
+  objectFit = 'auto',
   brushSize = 150,
   strength = 0.2,
   swirl = 1,
@@ -277,17 +291,6 @@ const RippleDistortion = ({
       wrapT: gl.CLAMP_TO_EDGE
     });
 
-    let disposed = false;
-    const image = new window.Image();
-    image.crossOrigin = 'anonymous';
-    image.decoding = 'async';
-    image.onload = () => {
-      if (disposed) return;
-      imageTexture.image = image;
-      compositeUniforms.uTextureSize.value = [image.naturalWidth || 1, image.naturalHeight || 1];
-    };
-    image.src = src;
-
     const offsets = new Float32Array(MAX_WAVES * 2);
     const scales = new Float32Array(MAX_WAVES * 2);
     const opacities = new Float32Array(MAX_WAVES);
@@ -322,6 +325,9 @@ const RippleDistortion = ({
     });
     waveProgram.setBlendFunc(gl.ONE, gl.ONE);
     const waveMesh = new Mesh(gl, { geometry, program: waveProgram, frustumCulled: false });
+    if (!(waveMesh as unknown as { children: unknown[] }).children) {
+      (waveMesh as unknown as { children: unknown[] }).children = [];
+    }
 
     const displacementTarget = new RenderTarget(gl, {
       width: 2,
@@ -346,7 +352,8 @@ const RippleDistortion = ({
       uDispersion: { value: dispersion },
       uGlint: { value: glint },
       uTintAmount: { value: tintAmount },
-      uGrayscale: { value: grayscale ? 1 : 0 }
+      uGrayscale: { value: grayscale ? 1 : 0 },
+      uObjectFit: { value: 0 }
     };
 
     const compositeMesh = new Mesh(gl, {
@@ -359,6 +366,9 @@ const RippleDistortion = ({
         depthWrite: false
       })
     });
+    if (!(compositeMesh as unknown as { children: unknown[] }).children) {
+      (compositeMesh as unknown as { children: unknown[] }).children = [];
+    }
 
     uniformsRef.current = { wave: waveUniforms, composite: compositeUniforms };
 
@@ -371,6 +381,16 @@ const RippleDistortion = ({
       renderer.setSize(width, height);
       compositeUniforms.uResolution.value = [width, height];
 
+      let fitVal = 0;
+      if (objectFit === 'fit-width' || objectFit === 'contain') {
+        fitVal = 1;
+      } else if (objectFit === 'auto') {
+        fitVal = (width < 768 || width < height) ? 1 : 0;
+      } else {
+        fitVal = 0;
+      }
+      compositeUniforms.uObjectFit.value = fitVal;
+
       const scale = QUALITY_SCALE[quality] || QUALITY_SCALE.high;
       const fieldW = Math.max(2, Math.round(width * scale));
       const fieldH = Math.max(2, Math.round(height * scale));
@@ -381,6 +401,26 @@ const RippleDistortion = ({
     const ro = new ResizeObserver(resize);
     ro.observe(mount);
     resize();
+
+    let disposed = false;
+    const image = new window.Image();
+    if (src.startsWith('http://') || src.startsWith('https://')) {
+      image.crossOrigin = 'anonymous';
+    }
+    image.decoding = 'async';
+    const handleImageLoad = () => {
+      if (disposed) return;
+      imageTexture.image = image;
+      imageTexture.needsUpdate = true;
+      compositeUniforms.uTextureSize.value = [image.naturalWidth || 1, image.naturalHeight || 1];
+      resize();
+    };
+    image.onload = handleImageLoad;
+    image.src = src;
+
+    if (image.complete && image.naturalWidth) {
+      handleImageLoad();
+    }
 
     const setNewWave = (x: number, y: number, power: number) => {
       const cfg = configRef.current;
@@ -434,44 +474,56 @@ const RippleDistortion = ({
     let previousTime = 0;
 
     const loop = (now: number) => {
+      if (disposed) return;
       raf = requestAnimationFrame(loop);
-      const delta = previousTime ? Math.min(0.05, (now - previousTime) / 1000) : 0;
-      previousTime = now;
-      const cfg = configRef.current;
+      try {
+        const delta = previousTime ? Math.min(0.05, (now - previousTime) / 1000) : 0;
+        previousTime = now;
+        const cfg = configRef.current;
 
-      const growth = reduceMotion ? 0 : 1 - Math.exp(-delta * 1.09);
-      const decay = reduceMotion ? 1 : Math.exp((-delta * LIFE_CONSTANT) / Math.max(0.15, cfg.fade));
+        const growth = reduceMotion ? 0 : 1 - Math.exp(-delta * 1.09);
+        const decay = reduceMotion ? 1 : Math.exp((-delta * LIFE_CONSTANT) / Math.max(0.15, cfg.fade));
 
-      for (let i = 0; i < MAX_WAVES; i += 1) {
-        const wave = waves[i];
-        if (wave.opacity <= 0) {
-          opacities[i] = 0;
-          continue;
+        for (let i = 0; i < MAX_WAVES; i += 1) {
+          const wave = waves[i];
+          if (wave.opacity <= 0) {
+            opacities[i] = 0;
+            continue;
+          }
+
+          wave.opacity *= decay;
+          wave.scale += (wave.target - wave.scale) * growth;
+
+          if (wave.opacity < 0.002) {
+            wave.opacity = 0;
+            opacities[i] = 0;
+            continue;
+          }
+
+          const half = (wave.scale * wave.size) / 2;
+          offsets[i * 2] = (wave.x / width) * 2 - 1;
+          offsets[i * 2 + 1] = (wave.y / height) * 2 - 1;
+          scales[i * 2] = (half / width) * 2;
+          scales[i * 2 + 1] = (half / height) * 2;
+          opacities[i] = wave.opacity;
         }
 
-        wave.opacity *= decay;
-        wave.scale += (wave.target - wave.scale) * growth;
+        geometry.attributes.iOffset.needsUpdate = true;
+        geometry.attributes.iScale.needsUpdate = true;
+        geometry.attributes.iOpacity.needsUpdate = true;
 
-        if (wave.opacity < 0.002) {
-          wave.opacity = 0;
-          opacities[i] = 0;
-          continue;
+        if (!(waveMesh as unknown as { children: unknown[] }).children) {
+          (waveMesh as unknown as { children: unknown[] }).children = [];
+        }
+        if (!(compositeMesh as unknown as { children: unknown[] }).children) {
+          (compositeMesh as unknown as { children: unknown[] }).children = [];
         }
 
-        const half = (wave.scale * wave.size) / 2;
-        offsets[i * 2] = (wave.x / width) * 2 - 1;
-        offsets[i * 2 + 1] = (wave.y / height) * 2 - 1;
-        scales[i * 2] = (half / width) * 2;
-        scales[i * 2 + 1] = (half / height) * 2;
-        opacities[i] = wave.opacity;
+        renderer.render({ scene: waveMesh, target: displacementTarget, clear: true });
+        renderer.render({ scene: compositeMesh });
+      } catch {
+        // Prevent WebGL rendering crashes
       }
-
-      geometry.attributes.iOffset.needsUpdate = true;
-      geometry.attributes.iScale.needsUpdate = true;
-      geometry.attributes.iOpacity.needsUpdate = true;
-
-      renderer.render({ scene: waveMesh, target: displacementTarget, clear: true });
-      renderer.render({ scene: compositeMesh });
     };
     raf = requestAnimationFrame(loop);
 
@@ -503,7 +555,16 @@ const RippleDistortion = ({
     u.composite.uTint.value = hexToRGB(tint);
   }, [rings, strength, swirl, dispersion, glint, tintAmount, grayscale, highlightColor, tint]);
 
-  return <div ref={mountRef} className={`ripple-distortion ${className}`.trim()} style={style} />;
+  return (
+    <div className={`ripple-distortion relative w-full h-full ${className}`.trim()} style={style}>
+      <img
+        src={src}
+        alt="Portfolio Background"
+        className="absolute inset-0 w-full h-full object-cover -z-10 pointer-events-none opacity-100"
+      />
+      <div ref={mountRef} className="absolute inset-0 w-full h-full z-0" />
+    </div>
+  );
 };
 
 export default RippleDistortion;

@@ -209,7 +209,7 @@ html.lenis body {
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-transparent text-foreground;
     font-family: var(--font-inter), sans-serif;
   }
 

@@ -90,7 +90,7 @@ export const About = () => {
               }}
             >
               <h2
-                className={`${nasalization.className} text-4xl md:text-5xl font-bold relative`}
+                className={`${nasalization.className} text-4xl md:text-5xl font-extrabold relative`}
                 style={{ color: "hsl(var(--primary))" }}
               >
                 About Me
@@ -99,7 +99,7 @@ export const About = () => {
 
             <motion.div
               className="space-y-6 leading-relaxed"
-              style={{ color: "hsl(var(--foreground) / 0.8)" }}
+              style={{ color: "hsl(var(--foreground))" }}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: 0.5 }}
@@ -107,7 +107,7 @@ export const About = () => {
               {selfData.about.map((paragraph, index) => (
                 <motion.p
                   key={index}
-                  className="text-xs hover:text-primary-foreground transition-colors duration-200"
+                  className="text-base md:text-lg font-semibold hover:text-primary transition-colors duration-200"
                   initial={{ opacity: 0, y: 15 }}
                   animate={
                     isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }

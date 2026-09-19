@@ -34,7 +34,7 @@ export const SkillCard = ({
       <motion.small
         whileHover={{ scale: 1.05 }}
         transition={{ type: "spring", stiffness: 400, damping: 10 }}
-        className="text-sm text-secondry font-semibold group-hover:text-primary-foreground/90"
+        className="text-sm text-white font-semibold group-hover:text-white"
       >
         {title}
       </motion.small>

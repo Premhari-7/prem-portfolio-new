@@ -24,7 +24,7 @@ export default function Home() {
   if (loading) return <PreLoader />;
 
   return (
-    <div className="min-h-screen relative bg-transparent">
+    <div className="min-h-screen relative z-10 bg-transparent">
         <Navbar />
         <Hero />
         <About />
