@@ -1527,7 +1527,6 @@ export default function AeroShards({
     let timeoutId = 0;
     let unsubscribeResize: (() => void) | undefined;
     let unsubscribeGpuError: (() => void) | undefined;
-    let visibilityObserver: IntersectionObserver | undefined;
     let resizeObserver: ResizeObserver | undefined;
     let visible = true;
     let visibilityRatio = 1;
@@ -1681,7 +1680,7 @@ export default function AeroShards({
     window.addEventListener('focus', handleVisibilityChange);
     reduceMotion.addEventListener('change', handleVisibilityChange);
 
-    visibilityObserver = new IntersectionObserver(
+    const visibilityObserver = new IntersectionObserver(
       entries => {
         const entry = entries[0];
         visibilityRatio = entry?.intersectionRatio ?? 1;

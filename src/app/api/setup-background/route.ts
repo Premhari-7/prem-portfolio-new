@@ -2,6 +2,15 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
+interface ReactBitsFile {
+  path: string;
+  content: string;
+}
+
+interface ReactBitsRegistryResponse {
+  files: ReactBitsFile[];
+}
+
 export async function GET() {
   try {
     const res = await fetch('https://reactbits.dev/r/AeroShards-TS-CSS.json');
@@ -9,10 +18,10 @@ export async function GET() {
       return NextResponse.json({ success: false, error: 'Failed to fetch JSON from React Bits' });
     }
     
-    const data = await res.json();
+    const data = (await res.json()) as ReactBitsRegistryResponse;
     
-    const tsxContent = data.files.find((f: any) => f.path === 'AeroShards.tsx')?.content;
-    const cssContent = data.files.find((f: any) => f.path === 'AeroShards.css')?.content;
+    const tsxContent = data.files.find(file => file.path === 'AeroShards.tsx')?.content;
+    const cssContent = data.files.find(file => file.path === 'AeroShards.css')?.content;
     
     if (tsxContent && cssContent) {
       const tsxPath = path.join(process.cwd(), 'src/components/common/AeroShards.tsx');
@@ -29,7 +38,7 @@ export async function GET() {
     } else {
       return NextResponse.json({ success: false, error: 'Could not find component contents in the fetched JSON.' });
     }
-  } catch (err: any) {
-    return NextResponse.json({ success: false, error: err.message });
+  } catch (err: unknown) {
+    return NextResponse.json({ success: false, error: err instanceof Error ? err.message : undefined });
   }
 }
