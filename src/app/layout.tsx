@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { Toaster } from "sonner";
 import SmoothScroll from "@/components/common/SmoothScroll";
-import SplashCursor from "@/components/common/SplashCursor";
 
 import { inter, mono, nasalization, quentine } from "./fonts";
 
@@ -18,6 +17,11 @@ import {
 import OfflineDetector from "@/components/common/OfflineDetector";
 import GlobalGlassFilters from "@/components/ui/GlobalGlassFilters";
 import { Background } from "@/components/common";
+import SplashCursor from "@/components/SplashCursor";
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
   applicationName: "Prem Hari Portfolio",
@@ -112,7 +116,7 @@ export default function RootLayout({
   const organizationStructuredData = generateOrganizationStructuredData();
 
   return (
-    <html lang="en">
+    <html lang="en" className={cn("font-sans", geist.variable)}>
       <body
         className={`${inter.variable} ${mono.variable} ${nasalization.variable} ${quentine.variable} font-sans`}
       >
@@ -139,24 +143,28 @@ export default function RootLayout({
 
         <Background />
         <SplashCursor
+          SIM_RESOLUTION={64}
+          DYE_RESOLUTION={720}
+          CAPTURE_RESOLUTION={256}
           DENSITY_DISSIPATION={3.5}
           VELOCITY_DISSIPATION={2}
           PRESSURE={0.1}
+          PRESSURE_ITERATIONS={10}
           CURL={3}
-          SPLAT_RADIUS={0.1}
-          SPLAT_FORCE={4000}
-          DYE_RESOLUTION={256}
-          SIM_RESOLUTION={32}
+          SPLAT_RADIUS={0.2}
+          SPLAT_FORCE={5000}
           COLOR_UPDATE_SPEED={10}
           SHADING={false}
           RAINBOW_MODE={false}
-          COLOR="#3c3b3e"
+          COLOR="#55c8f7"
         />
 
-        <SmoothScroll>
-          <GlobalGlassFilters />
-          {children}
-        </SmoothScroll>
+        <div className="relative z-10 bg-transparent">
+          <SmoothScroll>
+            <GlobalGlassFilters />
+            {children}
+          </SmoothScroll>
+        </div>
 
         <OfflineDetector />
         <Toaster position="bottom-right" richColors closeButton />

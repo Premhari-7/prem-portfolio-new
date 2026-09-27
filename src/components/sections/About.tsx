@@ -8,6 +8,7 @@ import Link from "next/link";
 import { LuMapPinned } from "react-icons/lu";
 import GlassSurface from "@/components/ui/GlassSurface";
 import TiltedCard from "@/components/ui/TiltedCard";
+import ElectricBorder from "@/components/ElectricBorder";
 
 export const About = () => {
   const ref = useRef(null);
@@ -97,35 +98,27 @@ export const About = () => {
               </h2>
             </motion.div>
 
-            <motion.div
-              className="space-y-6 leading-relaxed"
-              style={{ color: "hsl(var(--foreground))" }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
+            <ElectricBorder
+              color="#92f8fd"
+              speed={2.4}
+              chaos={0.01}
+              className="portfolio-electric-border w-full"
+              style={{ borderRadius: 16 }}
             >
-              {selfData.about.map((paragraph, index) => (
-                <motion.p
-                  key={index}
-                  className="text-base md:text-lg font-semibold hover:text-primary transition-colors duration-200"
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={
-                    isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }
-                  }
-                  transition={{
-                    duration: 0.5,
-                    delay: 0.6 + index * 0.1,
-                    ease: "easeOut",
-                  }}
-                  whileHover={{
-                    x: 4,
-                    transition: { duration: 0.2 },
-                  }}
-                >
-                  {paragraph}
-                </motion.p>
-              ))}
-            </motion.div>
+              <div className="space-y-4 rounded-2xl bg-[rgba(15,11,15,0.35)] p-5 backdrop-blur-md sm:p-8" style={{ color: "hsl(var(--foreground))" }}>
+                {selfData.about.map((paragraph, index) => (
+                  <motion.p
+                    key={index}
+                    className="text-base md:text-lg font-normal italic font-serif leading-relaxed"
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+                    transition={{ duration: 0.5, delay: 0.5 + index * 0.1, ease: "easeOut" }}
+                  >
+                    {paragraph}
+                  </motion.p>
+                ))}
+              </div>
+            </ElectricBorder>
 
             <motion.div
               className="flex items-center gap-4 text-sm"

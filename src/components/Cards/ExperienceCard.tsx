@@ -28,6 +28,11 @@ export const ExperienceCard: FC<ExperienceCardProps> = ({
     margin: "-50px",
     amount: 0.2,
   });
+  const isTargetCompany = [
+    "Nxtlogic",
+    "Maatram Foundation",
+    "Sri Krishna Arts and Science College",
+  ].includes(company);
 
   return (
     <motion.div
@@ -78,8 +83,8 @@ export const ExperienceCard: FC<ExperienceCardProps> = ({
                   {role}
                 </h3>
                 <p
-                  className="font-medium"
-                  style={{ color: "hsl(var(--secondary))" }}
+                  className={`font-medium ${isTargetCompany ? "text-white" : ""}`}
+                  style={isTargetCompany ? undefined : { color: "hsl(var(--secondary))" }}
                 >
                   {company}
                 </p>

@@ -1,3 +1,5 @@
+@import "../../node_modules/tw-animate-css/dist/tw-animate.css";
+@import "shadcn/tailwind.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,6 +13,11 @@ body {
 html {
   scroll-behavior: auto;
   overflow-x: hidden;
+  background-color: #131110;
+}
+
+body {
+  background-color: transparent !important;
 }
 
 html.lenis,
@@ -33,57 +40,57 @@ html.lenis body {
 @layer base {
   :root {
 
-    --background: 240 15% 2%;
-    --foreground: 220 8% 94%;
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 100%;
 
     /* Card & Surface Colors - Deep charcoal with luxury undertones */
-    --card: 245 20% 3%;
-    --card-foreground: 220 6% 96%;
-    --popover: 242 25% 2.5%;
-    --popover-foreground: 220 5% 97%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 100%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 100%;
 
     /* Primary Colors - Refined platinum with dark contrast */
-    --primary: 220 15% 88%;
-    --primary-foreground: 245 30% 8%;
-    --secondary: 275 60% 45%;
-    --secondary-foreground: 275 10% 95%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
 
     /* Muted & Neutral Colors - Deep grays with purple undertones */
-    --muted: 240 18% 6%;
-    --muted-foreground: 220 12% 65%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
 
     /* Accent Colors - Rich amethyst */
-    --accent: 275 70% 55%;
-    --accent-foreground: 275 15% 95%;
+    --accent: 275 60% 50%;
+    --accent-foreground: 0 0% 100%;
 
     /* Destructive Colors - Deep crimson */
-    --destructive: 0 70% 45%;
-    --destructive-foreground: 0 10% 96%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
 
     /* Interactive Elements - Ultra-dark with subtle definition */
-    --border: 240 20% 8%;
-    --input: 242 25% 4%;
-    --ring: 275 60% 60%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 275 60% 50%;
 
     /* Chart Colors - Dark luxury palette */
-    --chart-1: 220 15% 88%;
-    --chart-2: 275 60% 45%;
-    --chart-3: 195 50% 35%;
-    --chart-4: 315 45% 40%;
-    --chart-5: 45 40% 35%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
 
     /* Sidebar Components - Deepest blacks with luxury accents */
-    --sidebar: 245 25% 1.5%;
-    --sidebar-foreground: 220 8% 88%;
-    --sidebar-primary: 220 15% 88%;
-    --sidebar-primary-foreground: 245 30% 8%;
-    --sidebar-accent: 275 70% 55%;
-    --sidebar-accent-foreground: 275 15% 95%;
-    --sidebar-border: 240 20% 6%;
-    --sidebar-ring: 275 60% 60%;
+    --sidebar: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 275 60% 50%;
 
     /* Border Radius - Sharp luxury edges */
-    --radius: 0.75rem;
+    --radius: 0.625rem;
 
     /* Ultra-Dark Shadow System - Deep, rich shadows */
     --shadow-2xs: 0px 2px 4px 0px hsl(245 80% 1% / 0.8);
@@ -198,8 +205,54 @@ html.lenis body {
   }
 
   body {
+    position: relative;
     letter-spacing: var(--tracking-normal);
     overflow-x: hidden;
+    background: transparent;
+    @apply text-foreground;
+  }
+  .theme {
+    --font-heading: var(--font-sans);
+    --font-sans: var(--font-sans);
+  }
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 100%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 100%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 275 60% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 275 60% 50%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    --sidebar: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 275 60% 50%;
+  }
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
   }
 }
 
@@ -716,4 +769,3 @@ html.lenis body {
   transform: translate3d(0, 0, 0);
   contain: layout paint style;
 }
-

@@ -7,6 +7,7 @@ import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { selfData } from "@/constant";
 import GlareHover from "@/components/ui/GlareHover";
+import ElectricBorder from "@/components/ElectricBorder";
 
 import { quentine, mono } from "@/app/fonts";
 
@@ -17,9 +18,8 @@ export const Hero = () => {
   return (
     <section
       ref={ref}
-      className="min-h-screen flex items-center justify-start px-6 relative"
+      className="min-h-screen flex items-center justify-start px-6 relative bg-transparent"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
 
       <div className="max-w-full sm:max-w-7xl mx-auto w-full relative z-10">
         <motion.div
@@ -47,25 +47,35 @@ export const Hero = () => {
               {selfData.name}
             </motion.h1>
 
-            <motion.p
-              className={`${mono.className} text-2xl md:text-3xl font-extrabold tracking-wide`}
-              style={{ color: "hsl(var(--foreground))" }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.4 }}
+            <ElectricBorder
+              color="#92f8fd"
+              speed={2.4}
+              chaos={0.01}
+              className="portfolio-electric-border w-full max-w-3xl"
+              style={{ borderRadius: 16 }}
             >
-              {selfData.roles[0]}
-            </motion.p>
+              <div className="space-y-3 rounded-2xl bg-[rgba(15,11,15,0.35)] p-5 backdrop-blur-md sm:p-8">
+                <motion.p
+                  className={`${mono.className} text-2xl md:text-3xl font-extrabold tracking-wide`}
+                  style={{ color: "hsl(var(--foreground))" }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, delay: 0.4 }}
+                >
+                  {selfData.roles[0]}
+                </motion.p>
 
-            <motion.p
-              className="text-base md:text-lg font-bold max-w-2xl leading-relaxed"
-              style={{ color: "hsl(var(--foreground))" }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.6 }}
-            >
-              {selfData.bio}
-            </motion.p>
+                <motion.p
+                  className="text-base md:text-lg font-normal italic font-serif leading-relaxed"
+                  style={{ color: "hsl(var(--foreground))" }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, delay: 0.6 }}
+                >
+                  {selfData.bio}
+                </motion.p>
+              </div>
+            </ElectricBorder>
           </div>
 
           <motion.div
